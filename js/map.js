@@ -30,29 +30,25 @@ var div = d3.select("div#map").append("div")
     .classed("tooltip", true)
     .style("opacity", 0);
 
-d3.json('data/capacites.geojson').then(function(geojson) {
+d3.json('data/map_data.geojson').then(function(geojson) {
   deps.selectAll("path")
     .data(geojson.features)
     .enter()
     .append("path")
     .attr("d", path)
-    .attr("fill", "white")
+    .attr("fill", function(d) {return getColor(standardize(d,6,'Temp_midi'));})
     .attr("stroke", "black")
     .attr("stroke-width", 3)
     .on("mouseover", function(d) {
         var scale = 1.6;
         var bb = this.getBBox();
-        // console.log('BBox',bb);
-        // console.log('BoundingClient', this.getBoundingClientRect())
-        // console.log('Client', d3.event.clientX, d3.event.clientY)
-        // console.log('Page', d3.event.pageX, d3.event.pageY)
-        d3.select(this)
-          .moveToFront()
-          .transition()
-          .duration(1000)
-          .attrTween("transform", function(d, i, a) {
-              return d3.interpolateString(a, 'scale('+scale+') translate('+((-10  -  170 * bb.x/500.)*scale/1.3)+', '+((-20 -  170 * bb.y/500.)*scale/1.3)+')')
-          })
+        // d3.select(this)
+        //   .moveToFront()
+        //   .transition()
+        //   .duration(1000)
+        //   .attrTween("transform", function(d, i, a) {
+        //       return d3.interpolateString(a, 'scale('+scale+') translate('+((-10  -  170 * bb.x/500.)*scale/1.3)+', '+((-20 -  170 * bb.y/500.)*scale/1.3)+')')
+        //   })
         div.transition()
             .duration(200)
             .style("opacity", .9);
@@ -68,12 +64,12 @@ d3.json('data/capacites.geojson').then(function(geojson) {
          .style("top", d3.event.clientY - svg.node().getBoundingClientRect().y + "px");
     })
     .on("mouseout", function(d) {
-        d3.select(this)
-          .transition()
-          .duration(1000)
-          .attrTween("transform", function(d, i, a) {
-            return d3.interpolateString(a, 'scale(1)')
-          })
+        // d3.select(this)
+        //   .transition()
+        //   .duration(1000)
+        //   .attrTween("transform", function(d, i, a) {
+        //     return d3.interpolateString(a, 'scale(1)')
+        //   })
         div.style("opacity", 0);
         div.html("")
             .style("left", "-500px")
@@ -89,3 +85,23 @@ function getTooltipXposition(div){
     return (window.innerWidth - 30 - div.node().getBoundingClientRect().width - svg.node().getBoundingClientRect().x + 20 + "px");
   }
 };
+
+function standardize(d, month, feature) {
+  return (2*d.properties.data[month-1][feature] - d.properties.data[month-1][feature+'_max'] - d.properties.data[month-1][feature+'_min']) / (d.properties.data[month-1][feature+'_max'] - d.properties.data[month-1][feature+'_min'])
+}
+// Color bar
+color1 = d3.scaleLinear().domain([-1,0])
+  .interpolate(d3.interpolateRgb)
+  .range([d3.rgb('#420069'), d3.rgb('#FFFFFF')]);
+color2 = d3.scaleLinear().domain([0,1])
+  .interpolate(d3.interpolateRgb)
+  .range([d3.rgb("#FFFFFF"), d3.rgb('#FFAA00')]);
+
+function getColor(i) {
+  if (i < 0) {
+    return color1(i);
+  }
+  else {
+    return color2(i)
+  }
+}
