@@ -1,6 +1,9 @@
 const width = 810;
 const height = 600;
 
+var color_min = '#eac435'
+var color_max = '#fb4d3d'
+
 d3.selection.prototype.moveToFront = function() {
   return this.each(function(){
     this.parentNode.appendChild(this);
@@ -92,10 +95,10 @@ function standardize(d, month, feature) {
 // Color bar
 color1 = d3.scaleLinear().domain([-1,0])
   .interpolate(d3.interpolateRgb)
-  .range([d3.rgb('#1f7a8c'), d3.rgb('#FFFFFF')]);
+  .range([d3.rgb(color_min), d3.rgb('#FFFFFF')]);
 color2 = d3.scaleLinear().domain([0,1])
   .interpolate(d3.interpolateRgb)
-  .range([d3.rgb("#FFFFFF"), d3.rgb('#4b3f72')]);
+  .range([d3.rgb("#FFFFFF"), d3.rgb(color_max)]);
 
 function getColor(i) {
   if (i < 0) {
