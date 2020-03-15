@@ -1,4 +1,4 @@
-const width = 1000;
+const width = 810;
 const height = 600;
 
 d3.selection.prototype.moveToFront = function() {
@@ -18,7 +18,7 @@ var svg = d3.select("div#map")
 const path = d3.geoPath();
 
 const projection = d3.geoConicConformal()
-  .center([2.14, 43.9])
+  .center([2.8, 44])
   .scale(10000)
   // .translate([width / 2, height / 2]);
 
