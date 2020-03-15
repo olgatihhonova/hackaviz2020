@@ -42,7 +42,10 @@ d3.json('data/capacites.geojson').then(function(geojson) {
     .on("mouseover", function(d) {
         var scale = 1.6;
         var bb = this.getBBox();
-        console.log(bb);
+        // console.log('BBox',bb);
+        // console.log('BoundingClient', this.getBoundingClientRect())
+        // console.log('Client', d3.event.clientX, d3.event.clientY)
+        // console.log('Page', d3.event.pageX, d3.event.pageY)
         d3.select(this)
           .moveToFront()
           .transition()
@@ -55,14 +58,14 @@ d3.json('data/capacites.geojson').then(function(geojson) {
             .style("opacity", .9);
         div.html(d.properties.nom_dpt)
             .style("left", getTooltipXposition(div))
-            .style("top", d3.event.pageY + "px");
+            .style("top", d3.event.clientY - svg.node().getBoundingClientRect().y + "px");
     })
     .on('mousemove', function() {
       div.transition()
          .duration(0)
          .style("opacity", .9);
       div.style("left", getTooltipXposition(div))
-         .style("top", d3.event.pageY + "px");
+         .style("top", d3.event.clientY - svg.node().getBoundingClientRect().y + "px");
     })
     .on("mouseout", function(d) {
         d3.select(this)
@@ -79,10 +82,10 @@ d3.json('data/capacites.geojson').then(function(geojson) {
 });
 
 function getTooltipXposition(div){
-  if (div.node().getBoundingClientRect().width+d3.event.pageX < window.innerWidth - 50) {
-    return d3.event.pageX + "px";
+  if (div.node().getBoundingClientRect().width + d3.event.clientX < (window.innerWidth - 30) ) {
+    return (d3.event.clientX - svg.node().getBoundingClientRect().x + 20 + "px");
   }
   else {
-    return window.innerWidth - 50 - div.node().getBoundingClientRect().width + "px";
+    return (window.innerWidth - 30 - div.node().getBoundingClientRect().width - svg.node().getBoundingClientRect().x + 20 + "px");
   }
 };
