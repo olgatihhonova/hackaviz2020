@@ -46,7 +46,7 @@
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
 
-	<!-- DS3 Map-->
+	<!-- D3 Map-->
 	<script src="https://d3js.org/d3.v5.min.js"></script>
 
 
@@ -55,12 +55,13 @@
 	<div class="fh5co-loader"></div>
 	
 	<div id="page">
-	<nav class="fh5co-nav" role="navigation">
+
+	<!--<nav class="fh5co-nav" role="navigation">
 		<div class="top-menu">
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-2">
-						<div id="fh5co-logo"><a href="index.html">Air<span>.</span></a></div>
+						<div id="fh5co-logo"><a href="index.html">DataViz<span>.</span></a></div>
 					</div>
 					<div class="col-xs-10 text-right menu-1">
 						<ul>
@@ -84,7 +85,7 @@
 				
 			</div>
 		</div>
-	</nav>
+	</nav>-->
 
 	<header id="fh5co-header" class="fh5co-cover js-fullheight" role="banner">
 		<div class="overlay"></div>
@@ -95,10 +96,11 @@
 						<div class="display-tc js-fullheight animate-box" data-animate-effect="fadeIn">
 							<div class="fh5co-intro-text">
 								<h1>The Hitchhiker's Guide to Occitània</h1>
-								<h2>Free html5 templates Made by <a href="http://freehtml5.co/" target="_blank">freehtml5.co</a></h2>
+								<!--<h2>Free html5 templates Made by <a href="http://freehtml5.co/" target="_blank">freehtml5.co</a></h2>-->
 
-								<p><a class="btn btn-primary btn-lg btn-demo" href="#"></i> View Demo</a> <a class="btn btn-primary btn-lg btn-learn">Learn More</a></p>
+								<!--<p><a class="btn btn-primary btn-lg btn-demo" href="#"></i> View Demo</a> <a class="btn btn-primary btn-lg btn-learn">Learn More</a></p>-->
 							</div>
+							<a href="#fancy-map" class="buttonmap button style2 down">Map</a>
 						</div>
 					</div>
 				</div>
@@ -107,23 +109,73 @@
 	</header>
 
 
-<div id="fh5co-blog">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-offset-1 col-md-2">
-						<div class="value">5</div>
-					  	<input type="range" min="0" max="10" value="5" class="slider">
+
+
+
+
+	<div id="fancy-map">
+	<div id="fh5co-blog">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-offset-1 col-md-2">
+						<div class="slider-row">
+							<div class="month-value"><strong>Janvier</strong></div>
+						</div>
+						<input type="range" min="1" max="12" value="0" class="slider slider-month">
+
+						<div class="slider-row">
+							<div class="slider-column"><strong>Ensoleillé</strong></div>
+							<div class="slider-column right"><strong>Pluvieux</strong></div>
+						</div>
+						<input type="range" min="0" max="10" value="5" class="slider">
+
+						<div class="slider-row">
+							<div class="slider-column"><strong>Chaud</strong></div>
+							<div class="slider-column right"><strong>Froid</strong></div>
+						</div>
+						<input type="range" id="testrange" min="0" max="10" value="5" class="slider">
+
+						<div class="slider-row">
+							<div class="slider-column"><strong>Animé</strong></div>
+							<div class="slider-column right"><strong>Calme</strong></div>
+						</div>
+						<input type="range" min="0" max="10" value="5" class="slider">
+
+						<div class="slider-row">
+							<div class="slider-column"><strong>Ville</strong></div>
+							<div class="slider-column right"><strong>Nature</strong></div>
+						</div>
+						<input type="range" min="0" max="10" value="5" class="slider">
+
+						<div class="slider-row">
+							<div class="slider-column"><strong>Touristique</strong></div>
+							<div class="slider-column right"><strong>Authentique</strong></div>
+						</div>
+						<input type="range" min="0" max="10" value="5" class="slider">
+
+						<div class="slider-row">
+							<div class="slider-column"><strong>International</strong></div>
+							<div class="slider-column right"><strong>Natioanl</strong></div>
+						</div>
+						<input type="range" min="0" max="10" value="5" class="slider">
+
+						<div class="slider-row">
+							<div class="slider-column"><strong>Hebergement Facile</strong></div>
+							<div class="slider-column right"><strong>Compliqué</strong></div>
+						</div>
+						<input type="range" min="0" max="10" value="5" class="slider">
+					</div>
+
+
+					<div class="col-md-9">
+						<div id="map"></div>
+					</div>
 				</div>
 
-				<div class="col-md-9">
-					<div id="map"></div>
 				</div>
 			</div>
-
-			</div>
-		</div>
-</div>
-
+	</div>
+	</div>
 
 
 
@@ -179,6 +231,21 @@
 			</div>
 		</div>
 	</div>
+
+
+
+	<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-md-offset-3 text-center">
+					<div class="display-t js-fullheight">
+						<div class="display-tc js-fullheight animate-box" data-animate-effect="fadeIn">
+							<a href="#fancy-map" class="buttonmap up">Map</a>
+						</div>
+					</div>
+				</div>
+			</div>
+	</div>
+
 
 
 	<div id="fh5co-features">
@@ -497,9 +564,9 @@
 	</footer>
 	</div>
 
-	<div class="gototop js-top">
-		<a href="#" class="js-gotop"><i class="icon-arrow-up22"></i></a>
-	</div>
+	<!--<div class="gototop js-top">
+		<a href="#fancy-map" class="js-gotop"><i class="icon-arrow-up22"></i></a>
+	</div>-->
 	
 	<!-- jQuery -->
 	<script src="js/jquery.min.js"></script>
@@ -517,6 +584,7 @@
 	<script type="text/javascript" src="js/map.js"></script>
 
 	<script type="text/javascript" src="js/slider.js"></script>
+
 
 
 	</body>

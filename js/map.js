@@ -1,8 +1,11 @@
 const width = 810;
 const height = 600;
 
-var color_min = '#eac435'
-var color_max = '#fb4d3d'
+var color_min = '#0e9aaf'
+var color_max = '#ffb400'
+var color_border = '#0d2c54'
+//var color_min = '#1f7a8c'
+//var color_max = '#4b3f72'
 
 d3.selection.prototype.moveToFront = function() {
   return this.each(function(){
@@ -39,8 +42,8 @@ d3.json('data/map_data.geojson').then(function(geojson) {
     .enter()
     .append("path")
     .attr("d", path)
-    .attr("fill", function(d) {return getColor(standardize(d,6,'Temp_midi'));})
-    .attr("stroke", "black")
+    .attr("fill", function(d) {return getColor(standardize(d,10,'meteo'));})
+    .attr("stroke", color_border)
     .attr("stroke-width", 3)
     .on("mouseover", function(d) {
         var scale = 1.6;
@@ -54,7 +57,7 @@ d3.json('data/map_data.geojson').then(function(geojson) {
         //   })
         div.transition()
             .duration(200)
-            .style("opacity", .9);
+            .style("opacity", 1);
         div.html(d.properties.nom_dpt)
             .style("left", getTooltipXposition(div))
             .style("top", d3.event.clientY - svg.node().getBoundingClientRect().y + "px");
@@ -93,6 +96,7 @@ function standardize(d, month, feature) {
   return (2*d.properties.data[month-1][feature] - d.properties.data[month-1][feature+'_max'] - d.properties.data[month-1][feature+'_min']) / (d.properties.data[month-1][feature+'_max'] - d.properties.data[month-1][feature+'_min'])
 }
 // Color bar
+
 color1 = d3.scaleLinear().domain([-1,0])
   .interpolate(d3.interpolateRgb)
   .range([d3.rgb(color_min), d3.rgb('#FFFFFF')]);
@@ -100,11 +104,16 @@ color2 = d3.scaleLinear().domain([0,1])
   .interpolate(d3.interpolateRgb)
   .range([d3.rgb("#FFFFFF"), d3.rgb(color_max)]);
 
+//color1 = d3.scaleLinear().domain([-1,1])
+//  .interpolate(d3.interpolateRgb)
+//  .range([d3.rgb(color_min), d3.rgb(color_max)]);
+
 function getColor(i) {
+    //return color1(i);
   if (i < 0) {
     return color1(i);
   }
   else {
-    return color2(i)
+    return color2(i);
   }
 }
