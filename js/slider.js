@@ -1,3 +1,6 @@
+import {updateMap} from './map.js'
+
+
 /* show the right month */
 var elem = document.getElementById("month-range");
 
@@ -22,7 +25,7 @@ var rangeValue = function(){
 elem.addEventListener("input", rangeValue);
 
 
-/*extract the slider values to use in calc*/
+/*extract the slider values to use for map coloring */
 var month = document.getElementById("month-range");
 var monthValue = function() {
   var currentVal = month.value;
@@ -32,54 +35,88 @@ month.addEventListener("input", monthValue);
 
 var meteo = document.getElementById("meteo-range");
 var meteoValue = function() {
-  var defaultVal = meteo.defaultValue;
   var currentVal = meteo.value;
-  document.getElementById("demo").innerHTML = "The current value of month is: " + currentVal;
+  var monthVal = month.value;
+
+  updateMap(monthVal, "meteo");
+  document.getElementById("demo").innerHTML = "The current value of meteo is: " + currentVal + monthVal;
 }
 meteo.addEventListener("input", meteoValue);
 
 var temp = document.getElementById("temp-range");
 var tempValue = function() {
   var currentVal = temp.value;
-  document.getElementById("demo").innerHTML = "The current value of temp is: " + currentVal;
+  var monthVal = month.value;
+
+  updateMap(monthVal, "Temp_midi");
+  document.getElementById("demo").innerHTML = "The current value of temp is: " + currentVal + monthVal;
 }
 temp.addEventListener("input", tempValue);
 
 var festival = document.getElementById("festival-range");
 var festivalValue = function() {
   var currentVal = festival.value;
-  document.getElementById("demo").innerHTML = "The current value of festival is: " + currentVal;
+  var monthVal = month.value;
+
+  updateMap(monthVal, "nb_evt");
+  document.getElementById("demo").innerHTML = "The current value of festival is: " + currentVal + monthVal;
 }
 festival.addEventListener("input", festivalValue);
 
 var pop = document.getElementById("pop-range");
 var popValue = function() {
   var currentVal = pop.value;
-  document.getElementById("demo").innerHTML = "The current value of pop is: " + currentVal;
+  var monthVal = month.value;
+
+  updateMap(monthVal, "pop_dpt");
+  document.getElementById("demo").innerHTML = "The current value of pop is: " + currentVal + monthVal;
 }
 pop.addEventListener("input", popValue);
 
 var local = document.getElementById("local-range");
 var localValue = function() {
   var currentVal = local.value;
-  document.getElementById("demo").innerHTML = "The current value of local is: " + currentVal;
+  var monthVal = month.value;
+
+  updateMap(monthVal, "volume_sur_pop");
+  document.getElementById("demo").innerHTML = "The current value of local is: " + currentVal + monthVal;
 }
 local.addEventListener("input", localValue);
 
 var tourism = document.getElementById("tourism-range");
 var tourismValue = function() {
   var currentVal = tourism.value;
-  document.getElementById("demo").innerHTML = "The current value of tourism is: " + currentVal;
+  var monthVal = month.value;
+
+  updateMap(monthVal, "frac_internationale");
+  document.getElementById("demo").innerHTML = "The current value of tourism is: " + currentVal + monthVal;
 }
 tourism.addEventListener("input", tourismValue);
 
 var housing = document.getElementById("housing-range");
 var housingValue = function() {
   var currentVal = housing.value;
-  document.getElementById("demo").innerHTML = "The current value of housing is: " + currentVal;
+  var monthVal = month.value;
+
+  updateMap(monthVal, "volume_sur_hbgt");
+  document.getElementById("demo").innerHTML = "The current value of housing is: " + currentVal + monthVal;
 }
 housing.addEventListener("input", housingValue);
 
+/*extract all slider values to use for best destination calc */
+function getSliderValues() {
+  var monthVal = month.value;
+  var meteoVal = meteo.value;
+  var tempVal = temp.value;
+  var festivalVal = festival.value;
+  var popVal = pop.value;
+  var localVal = local.value;
+  var tourismVal = tourism.value;
+  var housingVal = housing.value;
+
+  document.getElementById("demo").innerHTML =
+  "The current values are "+monthVal+meteoVal+tempVal+festivalVal+popVal+localVal+tourismVal+housingVal;
+}
 
 
 

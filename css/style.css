@@ -1693,8 +1693,9 @@ input[type="text"] {
 }
 
 
-.slider-test {
-  margin-top: 20px;
+.best-destination {
+  font-family: 'Amatic SC', 'Heveltica Neue', Arial, sans-serif;
+  margin-top: 50px;
 }
 
 #demo {
