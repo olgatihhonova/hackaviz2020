@@ -1591,10 +1591,10 @@ input[type="text"] {
 }
 
 .slider::-moz-range-thumb {
-  width: 25px;
-  height: 25px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
-  background: #e74c3c;
+  background: #F8333C;
   border: 2px solid white;
   cursor: pointer;
   transition: .3s ease-in-out;
