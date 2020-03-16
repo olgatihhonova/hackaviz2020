@@ -104,7 +104,8 @@ var housingValue = function() {
 housing.addEventListener("input", housingValue);
 
 /*extract all slider values to use for best destination calc */
-function getSliderValues() {
+var bestDestination = document.getElementById("best-destination");
+var bestDestinationValue = function() {
   var monthVal = month.value;
   var meteoVal = meteo.value;
   var tempVal = temp.value;
@@ -117,8 +118,7 @@ function getSliderValues() {
   document.getElementById("demo").innerHTML =
   "The current values are "+monthVal+meteoVal+tempVal+festivalVal+popVal+localVal+tourismVal+housingVal;
 }
-
-
+bestDestination.addEventListener("click", bestDestinationValue);
 
 
 
