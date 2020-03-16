@@ -37,12 +37,38 @@ var div = d3.select("div#map").append("div")
     .style("opacity", 0);
 
 d3.json('data/map_data.geojson').then(function(geojson) {
+  const step = 0.005;
+  svg.selectAll('g').append('g')
+    .data(d3.range(-1,1,step))
+    .enter()
+    .append('rect')
+    .attr('x', 610)
+    .attr('y', function(d,i){return 600-100*i*step})
+    .attr('width', 15)
+    .attr('height', 2)
+    .attr('fill', function(d){return color(d)});
+    // .attr('x', function(d,i){return 200+200*i*step})
+    // .attr('y', 590)
+    // .attr('width', 2)
+    // .attr('height', 10)
+    // .attr('fill', function(d){return color(d)});
+
+  // svg.append("g")
+  //   .attr("transform", "translate(610,20)")
+  //   .append(() => legend({
+  //     color: color,
+  //     title: "test",
+  //     width: 260,
+  //     // tickValues: d3.utcYear.every(5).range(...color.domain()),
+  //     // tickFormat: d3.utcFormat("%Y")
+  //   }));
+
   deps.selectAll("path")
     .data(geojson.features)
     .enter()
     .append("path")
     .attr("d", path)
-    .attr("fill", function(d) {return getColor(standardize(d,10,'meteo'));})
+    .attr("fill", function(d) {return color(standardize(d,10,'meteo'));})
     .attr("stroke", color_border)
     .attr("stroke-width", 3)
     .on("mouseover", function(d) {
@@ -81,6 +107,7 @@ d3.json('data/map_data.geojson').then(function(geojson) {
             .style("left", "-500px")
             .style("top", "-500px");
     });
+
 });
 
 function getTooltipXposition(div){
@@ -95,25 +122,17 @@ function getTooltipXposition(div){
 function standardize(d, month, feature) {
   return (2*d.properties.data[month-1][feature] - d.properties.data[month-1][feature+'_max'] - d.properties.data[month-1][feature+'_min']) / (d.properties.data[month-1][feature+'_max'] - d.properties.data[month-1][feature+'_min'])
 }
+
 // Color bar
-
-color1 = d3.scaleLinear().domain([-1,0])
+color = d3.scaleLinear().domain([-1,0,1])
   .interpolate(d3.interpolateRgb)
-  .range([d3.rgb(color_min), d3.rgb('#FFFFFF')]);
-color2 = d3.scaleLinear().domain([0,1])
-  .interpolate(d3.interpolateRgb)
-  .range([d3.rgb("#FFFFFF"), d3.rgb(color_max)]);
+  .range([d3.rgb(color_min), d3.rgb('#FFFFFF'), d3.rgb(color_max)]);
 
-//color1 = d3.scaleLinear().domain([-1,1])
-//  .interpolate(d3.interpolateRgb)
-//  .range([d3.rgb(color_min), d3.rgb(color_max)]);
-
-function getColor(i) {
-    //return color1(i);
-  if (i < 0) {
-    return color1(i);
-  }
-  else {
-    return color2(i);
-  }
+function updateMap(deps, month, feature) {
+  d3.json('data/map_data.geojson').then(function(geojson) {
+    deps.selectAll("path")
+      .transition()
+      .duration(1000)
+      .attr("fill", function(d) {return color(standardize(d,month,feature));})
+    });
 }
