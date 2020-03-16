@@ -128,7 +128,7 @@ color = d3.scaleLinear().domain([-1,0,1])
   .interpolate(d3.interpolateRgb)
   .range([d3.rgb(color_min), d3.rgb('#FFFFFF'), d3.rgb(color_max)]);
 
-function updateMap(deps, month, feature) {
+function updateMap(month, feature) {
   d3.json('data/map_data.geojson').then(function(geojson) {
     deps.selectAll("path")
       .transition()
