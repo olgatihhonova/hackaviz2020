@@ -37,16 +37,6 @@ var div = d3.select("div#map").append("div")
     .style("opacity", 0);
 
 d3.json('data/map_data.geojson').then(function(geojson) {
-  const step = 0.005;
-  svg.selectAll('g').append('g')
-    .data(d3.range(-1,1,step))
-    .enter()
-    .append('rect')
-    .attr('x', 610)
-    .attr('y', function(d,i){return 600-100*i*step})
-    .attr('width', 15)
-    .attr('height', 2)
-    .attr('fill', function(d){return color(d)});
     // .attr('x', function(d,i){return 200+200*i*step})
     // .attr('y', 590)
     // .attr('width', 2)
@@ -68,7 +58,7 @@ d3.json('data/map_data.geojson').then(function(geojson) {
     .enter()
     .append("path")
     .attr("d", path)
-    .attr("fill", function(d) {return color(standardize(d,10,'meteo'));})
+    .attr("fill", function(d) {return color(0);})
     .attr("stroke", color_border)
     .attr("stroke-width", 3)
     .on("mouseover", function(d) {
@@ -135,4 +125,20 @@ export function updateMap(month, feature) {
       .duration(1000)
       .attr("fill", function(d) {return color(standardize(d,month,feature));})
     });
+
+  // const step = 0.005;
+  // svg.selectAll('g').append('g')
+  //   .data(d3.range(-1,1,step))
+  //   .enter()
+  //   .append('rect')
+  //   .attr('x', 610)
+  //   .attr('y', function(d,i){return 600-100*i*step})
+  //   .attr('width', 15)
+  //   .attr('height', 2)
+  //   .attr('fill', function(d){return color(d)})
+  //   .style('opacity', 0)
+  //   .transition()
+  //   .duration(2000)
+  //   .delay(300)
+  //   .style('opacity', 1)
 }
