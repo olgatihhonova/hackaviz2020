@@ -1676,13 +1676,11 @@ input[type="text"] {
 	margin-top: 20px;
 }
 
-.buttonmap:hover,
-	button.style2:hover {
+.buttonmap:hover {
 	background-color: rgba(229, 230, 231, 0.25);
 }
 
-.buttonmap:active,
-	button.style2:active {
+.buttonmap:active {
 	background-color: rgba(229, 230, 231, 0.375);
 }
 
@@ -1693,14 +1691,61 @@ input[type="text"] {
 }
 
 
+/* button for best dest calc*/
 .best-destination {
   font-family: 'Amatic SC', 'Heveltica Neue', Arial, sans-serif;
   margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+    padding: 20px 40px;
+	background: none;
+	border: none;
+	position: relative;
+	//text-transform: uppercase;
+	//letter-spacing: 3px;
+	color: #fff;
+	cursor: pointer;
+}
+button:after, button:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	border: 1px solid #bdc3c7;
+	transition: transform .2s;
+}
+button:after {
+    -webkit-transform: translate(3px, 3px);
+    -o-transform: translate(3px, 3px);
+    transform: translate(3px, 3px);
+}
+button:before {
+    -webkit-transform: translate(-3px, -3px);
+    -o-transform: translate(-3px, -3px);
+    transform: translate(-3px, -3px);
+}
+
+button:hover::after, button:hover::before {
+	-webkit-transform: translate(0px, 0px);
+    -o-transform: translate(0px, 0px);
+    transform: translate(0px, 0px);
+}
+
+button:active {
+    color: #0d2c54;
+    //background: rgba(229, 230, 231, 0.25);
 }
 
 #demo {
-  color: white;
+  color: #0d2c54;
   font-size: 20px;
 }
 
+}
 /*# sourceMappingURL=style.css.map */

@@ -2,7 +2,7 @@ import {updateMap} from './map.js'
 
 
 /* show the right month */
-var elem = document.getElementById("month-range");
+var elem = document.getElementById("month");
 
 var rangeValue = function(){
   var newValue = elem.value;
@@ -26,86 +26,112 @@ elem.addEventListener("input", rangeValue);
 
 
 /*extract the slider values to use for map coloring */
-var month = document.getElementById("month-range");
-var monthValue = function() {
+var monthId = "month";
+var meteoId = "meteo";
+var tempId = "Temp_midi";
+var festivalId = "nb_evt";
+var popId = "pop_dpt";
+var localId = "volume_sur_pop";
+var tourismId = "frac_internationale";
+var housingId = "volume_sur_hbgt";
+var activeId = "none"
+
+var month = document.getElementById(monthId);
+var meteo = document.getElementById(meteoId);
+var temp = document.getElementById(tempId);
+var festival = document.getElementById(festivalId);
+var pop = document.getElementById(popId);
+var local = document.getElementById(localId);
+var tourism = document.getElementById(tourismId);
+var housing = document.getElementById(housingId);
+
+function monthValue() {
   var currentVal = month.value;
-  document.getElementById("demo").innerHTML = "The current value of month is: " + currentVal;
+  if (activeId != "none") {
+    var activeEl = document.getElementById(activeId);
+    var activeVal = activeEl.value;
+    updateMap(currentVal, activeId);
+    document.getElementById("demo").innerHTML = "The current value of month is: " + currentVal + activeId;
+  }
+  else {
+    document.getElementById("demo").innerHTML = "The current value of month is panic: " + currentVal + activeId;
+  }
 }
 month.addEventListener("input", monthValue);
 
-var meteo = document.getElementById("meteo-range");
-var meteoValue = function() {
+function meteoValue() {
   var currentVal = meteo.value;
   var monthVal = month.value;
-
+  activeId = meteoId;
   updateMap(monthVal, "meteo");
+
   document.getElementById("demo").innerHTML = "The current value of meteo is: " + currentVal + monthVal;
 }
 meteo.addEventListener("input", meteoValue);
 
-var temp = document.getElementById("temp-range");
-var tempValue = function() {
+function tempValue() {
   var currentVal = temp.value;
   var monthVal = month.value;
+  activeId = tempId;
+  updateMap(monthVal, tempId);
 
-  updateMap(monthVal, "Temp_midi");
   document.getElementById("demo").innerHTML = "The current value of temp is: " + currentVal + monthVal;
 }
 temp.addEventListener("input", tempValue);
 
-var festival = document.getElementById("festival-range");
-var festivalValue = function() {
+function festivalValue() {
   var currentVal = festival.value;
   var monthVal = month.value;
+  activeId = festivalId;
+  updateMap(monthVal, festivalId);
 
-  updateMap(monthVal, "nb_evt");
   document.getElementById("demo").innerHTML = "The current value of festival is: " + currentVal + monthVal;
 }
 festival.addEventListener("input", festivalValue);
 
-var pop = document.getElementById("pop-range");
-var popValue = function() {
+function popValue() {
   var currentVal = pop.value;
   var monthVal = month.value;
+  activeId = popId;
+  updateMap(monthVal, popId);
 
-  updateMap(monthVal, "pop_dpt");
   document.getElementById("demo").innerHTML = "The current value of pop is: " + currentVal + monthVal;
 }
 pop.addEventListener("input", popValue);
 
-var local = document.getElementById("local-range");
-var localValue = function() {
+function localValue() {
   var currentVal = local.value;
   var monthVal = month.value;
+  activeId = localId;
+  updateMap(monthVal, localId);
 
-  updateMap(monthVal, "volume_sur_pop");
   document.getElementById("demo").innerHTML = "The current value of local is: " + currentVal + monthVal;
 }
 local.addEventListener("input", localValue);
 
-var tourism = document.getElementById("tourism-range");
-var tourismValue = function() {
+function tourismValue() {
   var currentVal = tourism.value;
   var monthVal = month.value;
+  activeId = tourismId;
+  updateMap(monthVal, tourismId);
 
-  updateMap(monthVal, "frac_internationale");
   document.getElementById("demo").innerHTML = "The current value of tourism is: " + currentVal + monthVal;
 }
 tourism.addEventListener("input", tourismValue);
 
-var housing = document.getElementById("housing-range");
-var housingValue = function() {
+function housingValue() {
   var currentVal = housing.value;
   var monthVal = month.value;
+  activeId = housingId;
+  updateMap(monthVal, housingId);
 
-  updateMap(monthVal, "volume_sur_hbgt");
   document.getElementById("demo").innerHTML = "The current value of housing is: " + currentVal + monthVal;
 }
 housing.addEventListener("input", housingValue);
 
 /*extract all slider values to use for best destination calc */
-var bestDestination = document.getElementById("best-destination");
-var bestDestinationValue = function() {
+var bestDestination = document.getElementById("destination-button");
+function bestDestinationValue() {
   var monthVal = month.value;
   var meteoVal = meteo.value;
   var tempVal = temp.value;
