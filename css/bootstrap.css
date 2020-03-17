@@ -910,10 +910,16 @@ pre code {
 .row {
   margin-left: -15px;
   margin-right: -15px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
 }
 .row:before, .row:after {
   content: " ";
-  display: table;
+  //display: table;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
 }
 .row:after {
   clear: both;
