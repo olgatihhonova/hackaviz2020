@@ -71,18 +71,19 @@ h1, h2, h3, h4, h5, h6, figure {
 }
 
 ::-webkit-selection {
-  color: #fff;
-  background: #DD356E;
+  //color: #fff;
+  background: none;
 }
 
 ::-moz-selection {
-  color: #fff;
-  background: #DD356E;
+  //color: #fff;
+  background: none;
 }
 
 ::selection {
-  color: #fff;
-  background: #DD356E;
+  //color: #fff;
+  //background: #DD356E;
+  background: none;
 }
 
 .fh5co-nav {
@@ -720,7 +721,7 @@ h1, h2, h3, h4, h5, h6, figure {
   top: 0;
   left: 0;
   right: 0;
-  background: #dd356e;
+  background: #F8333C;
 }
 #fh5co-started .fh5co-heading {
   margin-bottom: 0;
@@ -1742,5 +1743,6 @@ button:active {
   color: white;
   font-size: 20px;
 }
+
 
 /*# sourceMappingURL=style.css.map */
