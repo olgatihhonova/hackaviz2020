@@ -56,7 +56,7 @@ var colorbar = svg.selectAll('g').append('g')
   .style('opacity', 0);
 
 // Setup legend
-var legend_data = [{'y': 380, 'dy': 7, 'text': 'max'}, {'y': 480, 'dy': 7, 'text': 'middle'}, {'y': 580, 'dy': 7  , 'text': 'min'}];
+var legend_data = [{'y': 380, 'dy': 7, 'text': 'max', 'color': color_max}, {'y': 480, 'dy': 7, 'text': 'middle', 'color': '#fff'}, {'y': 580, 'dy': 7  , 'text': 'min', 'color': color_min}];
 
 var legend = svg.append('g')
 
@@ -65,11 +65,11 @@ legend.selectAll('rect')
   .data(legend_data)
   .enter()
   .append('rect')
-  .attr('x',625)
+  .attr('x',610)
   .attr('y', function(d){return d.y;})
-  .attr('width', 10)
+  .attr('width', 25)
   .attr('height', 2)
-  .attr('fill', '#fff')
+  .attr('fill', function(d){return d.color;})
   .style('opacity', 0)
 legend.selectAll('text')
   .data(legend_data)
