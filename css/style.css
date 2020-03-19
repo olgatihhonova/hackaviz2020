@@ -1777,7 +1777,8 @@ button:active {
 
 .legend  {
   color: #fff;
-  font-family: 'Amatic SC';
-  font-weight: bold;
+  /* font-family: 'Amatic SC'; */
+  /* font-weight: bold; */
+  font-size: 20px;
 }
 /*# sourceMappingURL=style.css.map */

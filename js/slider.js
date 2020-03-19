@@ -1,4 +1,4 @@
-import {updateMap} from './map.js'
+import {updateMap, getBestDestination} from './map.js'
 
 
 /* show the right month */
@@ -23,7 +23,6 @@ var rangeValue = function(){
 }
 
 elem.addEventListener("input", rangeValue);
-
 
 /*extract the slider values to use for map coloring */
 var monthId = "month";
@@ -129,20 +128,23 @@ function housingValue() {
 }
 housing.addEventListener("input", housingValue);
 
-/*extract all slider values to use for best destination calc */
+  /*extract all slider values to use for best destination calc */
 var bestDestination = document.getElementById("destination-button");
 function bestDestinationValue() {
   var monthVal = month.value;
-  var meteoVal = meteo.value;
-  var tempVal = temp.value;
-  var festivalVal = festival.value;
-  var popVal = pop.value;
-  var localVal = local.value;
-  var tourismVal = tourism.value;
-  var housingVal = housing.value;
+  var vals = {
+     'meteo' : meteo.value,
+     'Temp_midi' : temp.value,
+     'nb_evt' : festival.value,
+     'pop_dpt' : pop.value,
+     'volume_sur_pop' : local.value,
+     'frac_internationale' : tourism.value,
+     'volume_sur_hbgt' : housing.value
+  }
 
-  document.getElementById("demo").innerHTML =
-  "The current values are "+monthVal+meteoVal+tempVal+festivalVal+popVal+localVal+tourismVal+housingVal;
+  getBestDestination(monthVal, vals)
+  // document.getElementById("demo").innerHTML =
+  // "The current values are "+monthVal+meteoVal+tempVal+festivalVal+popVal+localVal+tourismVal+housingVal;
 }
 bestDestination.addEventListener("click", bestDestinationValue);
 

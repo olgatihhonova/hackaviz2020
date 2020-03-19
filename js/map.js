@@ -49,14 +49,14 @@ var colorbar = svg.selectAll('g').append('g')
   .enter()
   .append('rect')
   .attr('x', 610)
-  .attr('y', function(d,i){return 600-100*i*step})
+  .attr('y', function(d,i){return 580-100*i*step})
   .attr('width', 15)
   .attr('height', 2)
   .attr('fill', function(d){return color(d);})
   .style('opacity', 0);
 
 // Setup legend
-var legend_data = [{'y': 400, 'dy': 18, 'text': 'max'}, {'y': 596, 'dy': 0, 'text': 'min'}];
+var legend_data = [{'y': 380, 'dy': 7, 'text': 'max'}, {'y': 480, 'dy': 7, 'text': 'middle'}, {'y': 580, 'dy': 7  , 'text': 'min'}];
 
 var legend = svg.append('g')
 
@@ -65,10 +65,10 @@ legend.selectAll('rect')
   .data(legend_data)
   .enter()
   .append('rect')
-  .attr('x',600)
+  .attr('x',610)
   .attr('y', function(d){return d.y;})
-  .attr('width', 35)
-  .attr('height', 4)
+  .attr('width', 25)
+  .attr('height', 2)
   .attr('fill', '#fff')
   .style('opacity', 0)
 legend.selectAll('text')
@@ -78,9 +78,10 @@ legend.selectAll('text')
   .classed('legend', true)
   .attr('x', 650)
   .attr('y', function(d){return d.y+d.dy;})
+  .attr('fill', 'white')
   .text(function(d){return d.text;})
   .style('opacity', 0)
-
+  
 
 // Setup map
 d3.json('data/map_data.geojson').then(function(geojson) {
@@ -162,10 +163,20 @@ export function updateMap(month, feature) {
   d3.json('data/map_data.geojson').then(function(geojson) {
 
     // Update legend
-    const max_feature = geojson.features[0].properties.data[month-1][feature+'_max'].toFixed(2)
-    const min_feature = geojson.features[0].properties.data[month-1][feature+'_min'].toFixed(2)
+    var max_feature = geojson.features[0].properties.data[month-1][feature+'_max'];
+    var min_feature = geojson.features[0].properties.data[month-1][feature+'_min'];
+    var mean_feature = (max_feature + min_feature) / 2;
+
+    var labels_data = [max_feature, mean_feature, min_feature];
+
+    for (var i=0; i < labels_data.length; i++) {
+      if (Number.isInteger(labels_data[i]))
+        continue;
+      else
+        labels_data[i] = labels_data[i].toFixed(1);
+    }
     legend.selectAll('text')
-      .data([max_feature, min_feature])
+      .data(labels_data)
       .transition()
       .duration(2000)
       .delay(300)
@@ -200,24 +211,49 @@ export function getBestDestination(month, vals) {
         score_dpt += (vals[key]-5)/5. * standardize(geojson.features[i], month, key);
       }
       scores.push(score_dpt);
-      console.log(i, score_dpt, standardize(geojson.features[i], month, key))
+      console.log(i, score_dpt, standardize(geojson.features[i], month, key), geojson.features[i].properties.nom_dpt)
     }
+    // for (var i=0; i < geojson.features.length; i++) {
+    //   if (scores[i] == Math.max.apply(null, scores)) {
+    //     console.log(i)
+    //     deps.select("path:nth-child("+i+")")
+    //       .transition()
+    //       .duration(1000)
+    //       .attr("fill", "#F8333C")
+    //       // .attrTween("transform", function(d, i, a) {
+    //         // var scale = 2;
+    //         // var bb = this.getBBox();
+    //               // return d3.interpolateString(a, 'scale('+scale+') translate('+((-10  -  170 * bb.x/500.)*scale/1.3)+', '+((-20 -  170 * bb.y/500.)*scale/1.3)+')')
+    //               break;
+    //     }
+    var best = []
     for (var i=0; i < geojson.features.length; i++) {
       if (scores[i] == Math.max.apply(null, scores)) {
-        console.log(i)
-        deps.select("path:nth-child("+i+")")
-          .transition()
-          .duration(1000)
-          .attr("fill", "#ffffff")
-          // .attrTween("transform", function(d, i, a) {
-            // var scale = 2;
-            // var bb = this.getBBox();
-                  // return d3.interpolateString(a, 'scale('+scale+') translate('+((-10  -  170 * bb.x/500.)*scale/1.3)+', '+((-20 -  170 * bb.y/500.)*scale/1.3)+')')
-                  break;
-        }
+        best.push(1);
       }
-    })
-    };
-
+      else {
+        best.push(0);
+      }
+      deps.selectAll('path')
+        .data(geojson.features)
+        .transition()
+        .duration(1000)
+        .attr('fill', function(d,i) {if (best[i]==1) {return '#F8333C';} else { return '#fff';}})
+      colorbar.transition()
+        .duration(1000)
+        .style('opacity', 0);
+      // Make legend ticks appear
+      legend.selectAll('rect')
+        .transition()
+        .duration(1000)
+        .style('opacity', 0);
+      legend.selectAll('text')
+        .transition()
+        .duration(1000)
+        .style('opacity', 0);
+    }
+    console.log(best)
+  });
+}
 
 // }
