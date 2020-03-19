@@ -229,7 +229,6 @@ export function getBestDestination(month, vals) {
         score_dpt += (vals[key]-5)/5. * standardize(geojson.features[i], month, key);
       }
       scores.push(score_dpt);
-      console.log(i, score_dpt, standardize(geojson.features[i], month, key), geojson.features[i].properties.nom_dpt)
     }
 
     var best = []
