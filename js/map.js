@@ -155,10 +155,14 @@ export function updateMap(month, feature) {
     var labels_data = [max_feature, mean_feature, min_feature];
 
     for (var i=0; i < labels_data.length; i++) {
-      if (Number.isInteger(labels_data[i]))
-        continue;
-      else
+      if (labels_data[i]>=1000) {
+        labels_data[i]/= 1000;
         labels_data[i] = labels_data[i].toFixed(1);
+        labels_data[i]+= 'k';
+      }
+      else {
+        labels_data[i] = labels_data[i].toFixed(1);
+      }
     }
     legend.selectAll('text')
       .data(labels_data)

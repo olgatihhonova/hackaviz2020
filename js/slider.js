@@ -30,7 +30,7 @@ var meteoId = "meteo";
 var tempId = "Temp_midi";
 var festivalId = "nb_evt";
 var popId = "pop_dpt";
-var localId = "volume_sur_pop";
+var localId = "volume";
 var tourismId = "frac_internationale";
 var housingId = "volume_sur_hbgt";
 var activeId = "none"
@@ -138,7 +138,7 @@ function bestDestinationValue() {
      'Temp_midi' : temp.value,
      'nb_evt' : festival.value,
      'pop_dpt' : pop.value,
-     'volume_sur_pop' : local.value,
+     'volume' : local.value,
      'frac_internationale' : tourism.value,
      'volume_sur_hbgt' : housing.value
   }
