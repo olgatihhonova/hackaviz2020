@@ -161,7 +161,7 @@ function bestDestinationValue() {
         housing.value == housing.defaultValue ) {
 
     resetMap();
-    document.getElementById("button-message").innerHTML = "Sélectionnez les <span class='tip'>critères !</span>";
+    document.getElementById("button-message").innerHTML = "Sélectionnez des <span class='tip'>critères !</span>";
   }
   else {
     getBestDestination(monthVal, vals);
