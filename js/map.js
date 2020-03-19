@@ -41,19 +41,22 @@ var div = d3.select("div#map").append("div")
 const step = 0.005;
 
 // Setup colorbar
+const x_init = 570;
+const y_init = 400;
+
 var colorbar = svg.selectAll('g').append('g')
   .data(d3.range(-1,1,step))
   .enter()
   .append('rect')
-  .attr('x', 610)
-  .attr('y', function(d,i){return 580-100*i*step})
-  .attr('width', 15)
-  .attr('height', 2)
+  .attr('x', function(d,i){return x_init+100*i*step})
+  .attr('y', y_init)
+  .attr('width', 1)
+  .attr('height', 10)
   .attr('fill', function(d){return color(d);})
   .style('opacity', 0);
 
 // Setup legend
-var legend_data = [{'y': 380, 'dy': 7, 'text': 'max', 'color': color_max}, {'y': 480, 'dy': 7, 'text': 'middle', 'color': '#fff'}, {'y': 580, 'dy': 7  , 'text': 'min', 'color': color_min}];
+var legend_data = [{'x': x_init, 'text': 'min', 'color': color_min}, {'x': x_init+100, 'text': 'middle', 'color': '#fff'}, {'x': x_init+200, 'text': 'max', 'color': color_max}];
 
 var legend = svg.append('g')
 
@@ -62,10 +65,10 @@ legend.selectAll('rect')
   .data(legend_data)
   .enter()
   .append('rect')
-  .attr('x',610)
-  .attr('y', function(d){return d.y;})
-  .attr('width', 25)
-  .attr('height', 2)
+  .attr('x',function(d){return d.x;})
+  .attr('y', y_init)
+  .attr('width', 2)
+  .attr('height', 20)
   .attr('fill', function(d){return d.color;})
   .style('opacity', 0)
 legend.selectAll('text')
@@ -73,11 +76,12 @@ legend.selectAll('text')
   .enter()
   .append('text')
   .classed('legend', true)
-  .attr('x', 650)
-  .attr('y', function(d){return d.y+d.dy;})
+  .attr('x', function(d){return d.x;})
+  .attr('y', y_init+40)
   .attr('fill', 'white')
   .text(function(d){return d.text;})
   .style('opacity', 0)
+  .style("text-anchor", "middle")
 
 
 // Setup map
@@ -152,7 +156,7 @@ export function updateMap(month, feature) {
     var min_feature = geojson.features[0].properties.data[month-1][feature+'_min'];
     var mean_feature = (max_feature + min_feature) / 2;
 
-    var labels_data = [max_feature, mean_feature, min_feature];
+    var labels_data = [min_feature, mean_feature, max_feature];
 
     for (var i=0; i < labels_data.length; i++) {
       if (labels_data[i]>=1000) {
