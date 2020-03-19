@@ -65,9 +65,9 @@ legend.selectAll('rect')
   .data(legend_data)
   .enter()
   .append('rect')
-  .attr('x',610)
+  .attr('x',625)
   .attr('y', function(d){return d.y;})
-  .attr('width', 25)
+  .attr('width', 10)
   .attr('height', 2)
   .attr('fill', '#fff')
   .style('opacity', 0)
@@ -81,7 +81,7 @@ legend.selectAll('text')
   .attr('fill', 'white')
   .text(function(d){return d.text;})
   .style('opacity', 0)
-  
+
 
 // Setup map
 d3.json('data/map_data.geojson').then(function(geojson) {
@@ -195,15 +195,34 @@ export function updateMap(month, feature) {
   });
 }
 
+
+export function resetColorBar() {
+  colorbar.transition()
+    .duration(1000)
+    .style('opacity', 0);
+  legend.selectAll('rect')
+    .transition()
+    .duration(1000)
+    .style('opacity', 0);
+  legend.selectAll('text')
+    .transition()
+    .duration(1000)
+    .style('opacity', 0);
+}
+
+export function resetMap() {
+  deps.selectAll('path')
+    .data(geojson.features)
+    .transition()
+    .duration(1000)
+    .attr('fill', '#fff');
+  resetColorBar()
+}
+
+
 export function getBestDestination(month, vals) {
   d3.json('data/map_data.geojson').then(function(geojson) {
 
-    // var score = 0;
-    // var getScore = function(d) {
-    //   for (var key in vals) {
-    //     score+=vals[key]*standardize(d,month,key);
-    //   };
-    // };
     var scores = [];
     for (var i=0; i < geojson.features.length; i++) {
       var score_dpt = 0;
@@ -213,19 +232,7 @@ export function getBestDestination(month, vals) {
       scores.push(score_dpt);
       console.log(i, score_dpt, standardize(geojson.features[i], month, key), geojson.features[i].properties.nom_dpt)
     }
-    // for (var i=0; i < geojson.features.length; i++) {
-    //   if (scores[i] == Math.max.apply(null, scores)) {
-    //     console.log(i)
-    //     deps.select("path:nth-child("+i+")")
-    //       .transition()
-    //       .duration(1000)
-    //       .attr("fill", "#F8333C")
-    //       // .attrTween("transform", function(d, i, a) {
-    //         // var scale = 2;
-    //         // var bb = this.getBBox();
-    //               // return d3.interpolateString(a, 'scale('+scale+') translate('+((-10  -  170 * bb.x/500.)*scale/1.3)+', '+((-20 -  170 * bb.y/500.)*scale/1.3)+')')
-    //               break;
-    //     }
+
     var best = []
     for (var i=0; i < geojson.features.length; i++) {
       if (scores[i] == Math.max.apply(null, scores)) {
@@ -239,20 +246,8 @@ export function getBestDestination(month, vals) {
         .transition()
         .duration(1000)
         .attr('fill', function(d,i) {if (best[i]==1) {return '#F8333C';} else { return '#fff';}})
-      colorbar.transition()
-        .duration(1000)
-        .style('opacity', 0);
-      // Make legend ticks appear
-      legend.selectAll('rect')
-        .transition()
-        .duration(1000)
-        .style('opacity', 0);
-      legend.selectAll('text')
-        .transition()
-        .duration(1000)
-        .style('opacity', 0);
+      resetColorBar();
     }
-    console.log(best)
   });
 }
 
