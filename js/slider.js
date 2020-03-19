@@ -46,15 +46,17 @@ var housing = document.getElementById(housingId);
 
 function monthValue() {
   var currentVal = month.value;
+  document.getElementById("button-message").innerHTML = "";
   if (activeId != "none") {
     var activeEl = document.getElementById(activeId);
     var activeVal = activeEl.value;
     updateMap(currentVal, activeId);
-    document.getElementById("demo").innerHTML = "The current value of month is: " + currentVal + activeId;
+
+//    document.getElementById("button-message").innerHTML = "The current value of month is: " + currentVal + activeId;
   }
   else {
     resetMap();
-    document.getElementById("demo").innerHTML = "The current value of month is panic: " + currentVal + activeId;
+//    document.getElementById("button-message").innerHTML = "The current value of month is panic: " + currentVal + activeId;
   }
 }
 month.addEventListener("input", monthValue);
@@ -64,8 +66,8 @@ function meteoValue() {
   var monthVal = month.value;
   activeId = meteoId;
   updateMap(monthVal, "meteo");
-
-  document.getElementById("demo").innerHTML = "The current value of meteo is: " + currentVal + monthVal;
+  document.getElementById("button-message").innerHTML = "";
+//  document.getElementById("button-message").innerHTML = "The current value of meteo is: " + currentVal + monthVal;
 }
 meteo.addEventListener("input", meteoValue);
 
@@ -74,8 +76,9 @@ function tempValue() {
   var monthVal = month.value;
   activeId = tempId;
   updateMap(monthVal, tempId);
+  document.getElementById("button-message").innerHTML = "";
 
-  document.getElementById("demo").innerHTML = "The current value of temp is: " + currentVal + monthVal;
+//  document.getElementById("button-message").innerHTML = "The current value of temp is: " + currentVal + monthVal;
 }
 temp.addEventListener("input", tempValue);
 
@@ -84,8 +87,9 @@ function festivalValue() {
   var monthVal = month.value;
   activeId = festivalId;
   updateMap(monthVal, festivalId);
+  document.getElementById("button-message").innerHTML = "";
 
-  document.getElementById("demo").innerHTML = "The current value of festival is: " + currentVal + monthVal;
+//  document.getElementById("button-message").innerHTML = "The current value of festival is: " + currentVal + monthVal;
 }
 festival.addEventListener("input", festivalValue);
 
@@ -94,8 +98,9 @@ function popValue() {
   var monthVal = month.value;
   activeId = popId;
   updateMap(monthVal, popId);
+  document.getElementById("button-message").innerHTML = "";
 
-  document.getElementById("demo").innerHTML = "The current value of pop is: " + currentVal + monthVal;
+//  document.getElementById("button-message").innerHTML = "The current value of pop is: " + currentVal + monthVal;
 }
 pop.addEventListener("input", popValue);
 
@@ -104,8 +109,9 @@ function localValue() {
   var monthVal = month.value;
   activeId = localId;
   updateMap(monthVal, localId);
+  document.getElementById("button-message").innerHTML = "";
 
-  document.getElementById("demo").innerHTML = "The current value of local is: " + currentVal + monthVal;
+//  document.getElementById("button-message").innerHTML = "The current value of local is: " + currentVal + monthVal;
 }
 local.addEventListener("input", localValue);
 
@@ -114,8 +120,9 @@ function tourismValue() {
   var monthVal = month.value;
   activeId = tourismId;
   updateMap(monthVal, tourismId);
+  document.getElementById("button-message").innerHTML = "";
 
-  document.getElementById("demo").innerHTML = "The current value of tourism is: " + currentVal + monthVal;
+//  document.getElementById("button-message").innerHTML = "The current value of tourism is: " + currentVal + monthVal;
 }
 tourism.addEventListener("input", tourismValue);
 
@@ -124,8 +131,9 @@ function housingValue() {
   var monthVal = month.value;
   activeId = housingId;
   updateMap(monthVal, housingId);
+  document.getElementById("button-message").innerHTML = "";
 
-  document.getElementById("demo").innerHTML = "The current value of housing is: " + currentVal + monthVal;
+//  document.getElementById("button-message").innerHTML = "The current value of housing is: " + currentVal + monthVal;
 }
 housing.addEventListener("input", housingValue);
 
@@ -144,7 +152,21 @@ function bestDestinationValue() {
   }
   activeId = "none"
 
-  getBestDestination(monthVal, vals)
+   if ( meteo.value == meteo.defaultValue &&
+        temp.value == temp.defaultValue &&
+        festival.value == festival.defaultValue &&
+        pop.value == pop.defaultValue &&
+        local.value == local.defaultValue &&
+        tourism.value == tourism.defaultValue &&
+        housing.value == housing.defaultValue ) {
+
+    resetMap();
+    document.getElementById("button-message").innerHTML = "Sélectionnez des <span class='tip'>critères !</span>";
+  }
+  else {
+    getBestDestination(monthVal, vals);
+  }
+
   // document.getElementById("demo").innerHTML =
   // "The current values are "+monthVal+meteoVal+tempVal+festivalVal+popVal+localVal+tourismVal+housingVal;
 }
@@ -160,6 +182,9 @@ function resetParams() {
   local.value = local.defaultValue;
   tourism.value = tourism.defaultValue;
   housing.value = housing.defaultValue;
+
+  resetMap();
+  document.getElementById("button-message").innerHTML = "";
 }
 resetButton.addEventListener("click", resetParams);
 
