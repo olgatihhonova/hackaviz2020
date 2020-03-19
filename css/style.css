@@ -5,6 +5,14 @@
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+    font-family: 'Inconsolata';
+    src: url("../fonts/Inconsolata/Inconsolata-Regular.ttf")
+}
+@font-face {
+    font-family: 'Amatic SC';
+    src: url("../fonts/Amatic_SC/AmaticSC-Regular.ttf")
+}
 /* =======================================================
 *
 * 	Template Style
