@@ -149,69 +149,55 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-offset-1 col-md-2 col-sm-offset-3 col-sm-6 col-xs-offset-3 col-xs-6">
-						<div class="slider-row">
-							<div class="month-value"><strong>Janvier</strong></div>
-						</div>
+						<div class="month-value"><strong>Janvier</strong></div>
 						<input type="range" id="month" min="1" max="12" value="0" class="slider slider-month">
 
-						<div class="slider-row">
-							<div class="slider-column"><strong>Pluvieux</strong></div>
-							<div class="slider-column right"><strong>Ensoleillé</strong></div>
-						</div>
+						<div class="slider-column"><strong>Pluvieux</strong></div>
+						<div class="slider-column right"><strong>Ensoleillé</strong></div>
+
 						<div class="tooltip">
 							<input type="range" id="meteo" min="0" max="10" value="5" class="slider">
 							<span class="tooltiptext">Vous aimez prendre les bains de soleil ou préférez le blues de la <span class="tip">pluie ?</span> </span>
 						</div>
 
-						<div class="slider-row">
-							<div class="slider-column"><strong>Froid</strong></div>
-							<div class="slider-column right"><strong>Chaud</strong></div>
-						</div>
+						<div class="slider-column"><strong>Froid</strong></div>
+						<div class="slider-column right"><strong>Chaud</strong></div>
 						<div class="tooltip">
 							<input type="range" id="Temp_midi" min="0" max="10" value="5" class="slider">
 							<span class="tooltiptext">Vous aimez la chaleur ou preferer le climat <span class="tip">'nordic' ?</span> </span>
 						</div>
 
-						<div class="slider-row">
-							<div class="slider-column"><strong>Calme</strong></div>
-							<div class="slider-column right"><strong>Animé</strong></div>
-						</div>
+						<div class="slider-column"><strong>Calme</strong></div>
+						<div class="slider-column right"><strong>Animé</strong></div>
 						<div class="tooltip">
 							<input type="range" id="nb_evt" min="0" max="10" value="5" class="slider">
 							<span class="tooltiptext">Les festivals vous donnent envie ou la seule chose dont vous rêvez c'est un peu de <span class="tip">calme ?</span> </span>
 						</div>
 
-						<div class="slider-row">
-							<div class="slider-column"><strong>Nature</strong></div>
-							<div class="slider-column right"><strong>Ville</strong></div>
-						</div>
+						<div class="slider-column"><strong>Nature</strong></div>
+						<div class="slider-column right"><strong>Ville</strong></div>
 						<div class="tooltip">
 							<input type="range" id="pop_dpt" min="0" max="10" value="5" class="slider">
 							<span class="tooltiptext">Vous voulez vous plonger dans la vie bouillonnante de la ville ou savourer la lenteur de la dolce <span class="tip">vita ?</span> </span>
 						</div>
 
-						<div class="slider-row">
-							<div class="slider-column"><strong>Authentique</strong></div>
-							<div class="slider-column right"><strong>Touristique</strong></div>
-						</div>
+
+						<div class="slider-column"><strong>Authentique</strong></div>
+						<div class="slider-column right"><strong>Touristique</strong></div>
 						<div class="tooltip">
 							<input type="range" id="volume_sur_pop" min="0" max="10" value="5" class="slider">
 							<span class="tooltiptext">Vous êtes attirés par des endroits emblématique les aimants de touristes ou préférez <span class="tip">l'authenticité ?</span> </span>
 						</div>
 
-						<div class="slider-row">
-							<div class="slider-column"><strong>Français</strong></div>
-							<div class="slider-column right"><strong>International</strong></div>
-						</div>
+						<div class="slider-column"><strong>Français</strong></div>
+						<div class="slider-column right"><strong>International</strong></div>
 						<div class="tooltip">
 							<input type="range" id="frac_internationale" min="0" max="10" value="5" class="slider">
 							<span class="tooltiptext">Vous voulez vous retrouver au milieu de creuset culturel ou profiter de la <span class="tip">culture française ?</span> </span>
 						</div>
 
-						<div class="slider-row">
-							<div class="slider-column"><strong>Hotels Facile</strong></div>
-							<div class="slider-column right"><strong>Challenge</strong></div>
-						</div>
+						<div class="slider-column"><strong>Hotels Facile</strong></div>
+						<div class="slider-column right"><strong>Challenge</strong></div>
 						<div class="tooltip">
 							<input type="range" id="volume_sur_hbgt" min="0" max="10" value="5" class="slider">
 							<span class="tooltiptext">Les défis de réservation d'hôtels au dernier minute ne vous font pas peur ou vous aimez vous prendre en avance pour éviter les <span class="tip">risques ?</span> </span>
@@ -220,9 +206,10 @@
 
 
 						<div class="best-destination">
-							<button type="button" id="destination-button"><strong>Déstination Ideale</strong></button>
+							<button type="button" id="reset-button"><strong>Reset</strong></button>
 						</div>
 						<div class="best-destination">
+							<button type="button" id="destination-button"><strong>Déstination Ideale</strong></button>
 							<!--<p id="demo"></p>-->
 						</div>
 

@@ -1532,10 +1532,6 @@ input[type="text"] {
   text-align: right;
 }
 
-.slider-row {
-  margin-top: 31px;
-}
-
 .slider-container:after {
   content: "";
   display: table;
@@ -1551,6 +1547,7 @@ input[type="text"] {
   outline: none;
   -webkit-transition: .2s;
   transition: opacity .2s;
+  margin-bottom: 30px;
 }
 
 .slider:hover {
@@ -1678,18 +1675,20 @@ input[type="text"] {
 .best-destination {
   font-family: 'Amatic SC', 'Heveltica Neue', Arial, sans-serif;
   margin-top: 50px;
+  margin-bottom: -20px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 button {
-    padding: 20px 30px;
+    padding: 12px;
 	background: none;
 	border: none;
 	position: relative;
 	color: #fff;
 	cursor: pointer;
+	width: 180px;
 }
 button:after, button:before {
 	content: '';

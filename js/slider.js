@@ -129,8 +129,8 @@ function housingValue() {
 }
 housing.addEventListener("input", housingValue);
 
-  /*extract all slider values to use for best destination calc */
-var bestDestination = document.getElementById("destination-button");
+/* extract all slider values to use for best destination calc */
+var bestDestinationButton = document.getElementById("destination-button");
 function bestDestinationValue() {
   var monthVal = month.value;
   var vals = {
@@ -148,7 +148,20 @@ function bestDestinationValue() {
   // document.getElementById("demo").innerHTML =
   // "The current values are "+monthVal+meteoVal+tempVal+festivalVal+popVal+localVal+tourismVal+housingVal;
 }
-bestDestination.addEventListener("click", bestDestinationValue);
+bestDestinationButton.addEventListener("click", bestDestinationValue);
+
+/* reset all slider values */
+var resetButton = document.getElementById("reset-button");
+function resetParams() {
+  meteo.value = meteo.defaultValue;
+  temp.value = temp.defaultValue;
+  festival.value = festival.defaultValue;
+  pop.value = pop.defaultValue;
+  local.value = local.defaultValue;
+  tourism.value = tourism.defaultValue;
+  housing.value = housing.defaultValue;
+}
+resetButton.addEventListener("click", resetParams);
 
 
 
