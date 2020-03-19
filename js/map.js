@@ -4,8 +4,6 @@ const height = 600;
 var color_min = '#0e9aaf'
 var color_max = '#ffb400'
 var color_border = '#0d2c54'
-//var color_min = '#1f7a8c'
-//var color_max = '#4b3f72'
 
 d3.selection.prototype.moveToFront = function() {
   return this.each(function(){
@@ -31,7 +29,6 @@ const path = d3.geoPath();
 const projection = d3.geoConicConformal()
   .center([2.8, 44])
   .scale(10000)
-  // .translate([width / 2, height / 2]);
 
 path.projection(projection);
 
@@ -97,13 +94,7 @@ d3.json('data/map_data.geojson').then(function(geojson) {
     .on("mouseover", function(d) {
         var scale = 1.6;
         var bb = this.getBBox();
-        // d3.select(this)
-        //   .moveToFront()
-        //   .transition()
-        //   .duration(1000)
-        //   .attrTween("transform", function(d, i, a) {
-        //       return d3.interpolateString(a, 'scale('+scale+') translate('+((-10  -  170 * bb.x/500.)*scale/1.3)+', '+((-20 -  170 * bb.y/500.)*scale/1.3)+')')
-        //   })
+
         div.transition()
             .duration(200)
             .style("opacity", 1);
@@ -119,12 +110,6 @@ d3.json('data/map_data.geojson').then(function(geojson) {
          .style("top", d3.event.clientY - svg.node().getBoundingClientRect().y + "px");
     })
     .on("mouseout", function(d) {
-        // d3.select(this)
-        //   .transition()
-        //   .duration(1000)
-        //   .attrTween("transform", function(d, i, a) {
-        //     return d3.interpolateString(a, 'scale(1)')
-        //   })
         div.style("opacity", 0);
         div.html("")
             .style("left", "-500px")
@@ -248,5 +233,3 @@ export function getBestDestination(month, vals) {
     }
   });
 }
-
-// }
