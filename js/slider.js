@@ -1,4 +1,4 @@
-import {updateMap, getBestDestination} from './map.js'
+import {updateMap, getBestDestination, resetMap} from './map.js'
 
 
 /* show the right month */
@@ -53,6 +53,7 @@ function monthValue() {
     document.getElementById("demo").innerHTML = "The current value of month is: " + currentVal + activeId;
   }
   else {
+    resetMap();
     document.getElementById("demo").innerHTML = "The current value of month is panic: " + currentVal + activeId;
   }
 }
@@ -141,6 +142,7 @@ function bestDestinationValue() {
      'frac_internationale' : tourism.value,
      'volume_sur_hbgt' : housing.value
   }
+  activeId = "none"
 
   getBestDestination(monthVal, vals)
   // document.getElementById("demo").innerHTML =

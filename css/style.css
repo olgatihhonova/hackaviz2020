@@ -664,11 +664,16 @@ h1, h2, h3, h4, h5, h6, figure {
 #fh5co-wireframe,
 #fh5co-started,
 #fh5co-portfolio,
-#fh5co-blog,
 #fh5co-content-section,
 #fh5co-contact,
 #fh5co-footer {
   padding: 7em 0;
+  clear: both;
+}
+#fh5co-blog {
+  padding: 0;
+  padding-top: 1em;
+  padding-bottom: 6em;
   clear: both;
 }
 @media screen and (max-width: 768px) {
@@ -677,14 +682,17 @@ h1, h2, h3, h4, h5, h6, figure {
   #fh5co-wireframe,
   #fh5co-started,
   #fh5co-portfolio,
-  #fh5co-blog,
   #fh5co-content-section,
   #fh5co-contact,
   #fh5co-footer {
     padding: 3em 0;
   }
 }
-
+@media screen and (max-width: 768px) {
+  #fh5co-blog {
+    padding-bottom: 3em;
+  }
+}
 #fh5co-content {
   border-bottom: 2px solid rgba(221, 53, 110, 0.1);
 }
@@ -1676,7 +1684,7 @@ input[type="text"] {
 }
 
 button {
-    padding: 20px 40px;
+    padding: 20px 30px;
 	background: none;
 	border: none;
 	position: relative;
