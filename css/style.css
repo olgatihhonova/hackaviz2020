@@ -329,6 +329,12 @@ h1, h2, h3, h4, h5, h6, figure {
   font-size: 21px;
   //text-align: left;
 }
+#fh5co-intro .display-tc ul li {
+  color: #ffffff;
+  font-size: 21px;
+  text-align: left;
+}
+
 #fh5co-header .display-tc h1,
 .fh5co-cover .display-tc h1 {
   margin-bottom: 20px;
@@ -429,6 +435,9 @@ h1, h2, h3, h4, h5, h6, figure {
 }
 #fh5co-intro {
   background: #F8333C;
+}
+#fh5co-intro span {
+  white-space: nowrap;
 }
 
 #fh5co-features {
@@ -1715,5 +1724,55 @@ button:active {
     flex-wrap: wrap;
 }
 
+
+
+.tooltip {
+  position: relative;
+  //display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  background-color: #F8333C;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 10px;
+  position: absolute;
+  z-index: 1;
+  top: 150%;
+  left: 50%;
+  margin-left: -100px;
+}
+
+@media screen and (max-width: 991px) {
+  .tooltip .tooltiptext {
+    width: 350px;
+    margin-left: -175px;
+  }
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent #F8333C transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+.tooltip:active .tooltiptext {
+  visibility: hidden;
+}
+
+.tip {
+  white-space: nowrap;
+}
 
 /*# sourceMappingURL=style.css.map */
