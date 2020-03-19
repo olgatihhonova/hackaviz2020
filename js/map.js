@@ -13,6 +13,11 @@ d3.selection.prototype.moveToFront = function() {
   });
 };
 
+// Color bar
+var color = d3.scaleLinear().domain([-1,0,1])
+  .interpolate(d3.interpolateRgb)
+  .range([d3.rgb(color_min), d3.rgb('#FFFFFF'), d3.rgb(color_max)]);
+
 var svg = d3.select("div#map")
   .classed("svg-container", true)
   .append("svg")
@@ -36,22 +41,49 @@ var div = d3.select("div#map").append("div")
     .classed("tooltip", true)
     .style("opacity", 0);
 
-d3.json('data/map_data.geojson').then(function(geojson) {
-    // .attr('x', function(d,i){return 200+200*i*step})
-    // .attr('y', 590)
-    // .attr('width', 2)
-    // .attr('height', 10)
-    // .attr('fill', function(d){return color(d)});
+const step = 0.005;
 
-  // svg.append("g")
-  //   .attr("transform", "translate(610,20)")
-  //   .append(() => legend({
-  //     color: color,
-  //     title: "test",
-  //     width: 260,
-  //     // tickValues: d3.utcYear.every(5).range(...color.domain()),
-  //     // tickFormat: d3.utcFormat("%Y")
-  //   }));
+// Setup colorbar
+var colorbar = svg.selectAll('g').append('g')
+  .data(d3.range(-1,1,step))
+  .enter()
+  .append('rect')
+  .attr('x', 610)
+  .attr('y', function(d,i){return 600-100*i*step})
+  .attr('width', 15)
+  .attr('height', 2)
+  .attr('fill', function(d){return color(d);})
+  .style('opacity', 0);
+
+// Setup legend
+var legend_data = [{'y': 400, 'dy': 18, 'text': 'max'}, {'y': 596, 'dy': 0, 'text': 'min'}];
+
+var legend = svg.append('g')
+
+
+legend.selectAll('rect')
+  .data(legend_data)
+  .enter()
+  .append('rect')
+  .attr('x',600)
+  .attr('y', function(d){return d.y;})
+  .attr('width', 35)
+  .attr('height', 4)
+  .attr('fill', '#fff')
+  .style('opacity', 0)
+legend.selectAll('text')
+  .data(legend_data)
+  .enter()
+  .append('text')
+  .classed('legend', true)
+  .attr('x', 650)
+  .attr('y', function(d){return d.y+d.dy;})
+  .text(function(d){return d.text;})
+  .style('opacity', 0)
+
+
+// Setup map
+d3.json('data/map_data.geojson').then(function(geojson) {
 
   deps.selectAll("path")
     .data(geojson.features)
@@ -96,8 +128,7 @@ d3.json('data/map_data.geojson').then(function(geojson) {
         div.html("")
             .style("left", "-500px")
             .style("top", "-500px");
-    });
-
+    })
 });
 
 function getTooltipXposition(div){
@@ -113,32 +144,80 @@ function standardize(d, month, feature) {
   return (2*d.properties.data[month-1][feature] - d.properties.data[month-1][feature+'_max'] - d.properties.data[month-1][feature+'_min']) / (d.properties.data[month-1][feature+'_max'] - d.properties.data[month-1][feature+'_min'])
 }
 
-// Color bar
-var color = d3.scaleLinear().domain([-1,0,1])
-  .interpolate(d3.interpolateRgb)
-  .range([d3.rgb(color_min), d3.rgb('#FFFFFF'), d3.rgb(color_max)]);
+
 
 export function updateMap(month, feature) {
+  // Make colorbar appear
+  colorbar.transition()
+    .duration(2000)
+    .delay(300)
+    .style('opacity', 1);
+  // Make legend ticks appear
+  legend.selectAll('rect')
+    .transition()
+    .duration(2000)
+    .delay(300)
+    .style('opacity', 1);
+
   d3.json('data/map_data.geojson').then(function(geojson) {
+
+    // Update legend
+    const max_feature = geojson.features[0].properties.data[month-1][feature+'_max'].toFixed(2)
+    const min_feature = geojson.features[0].properties.data[month-1][feature+'_min'].toFixed(2)
+    legend.selectAll('text')
+      .data([max_feature, min_feature])
+      .transition()
+      .duration(2000)
+      .delay(300)
+      .text(function(d){return d;})
+      .style('opacity', 1);
+
+    // Update map colors
     deps.selectAll("path")
+      .data(geojson.features)
       .transition()
       .duration(1000)
       .attr("fill", function(d) {return color(standardize(d,month,feature));})
-    });
-
-  // const step = 0.005;
-  // svg.selectAll('g').append('g')
-  //   .data(d3.range(-1,1,step))
-  //   .enter()
-  //   .append('rect')
-  //   .attr('x', 610)
-  //   .attr('y', function(d,i){return 600-100*i*step})
-  //   .attr('width', 15)
-  //   .attr('height', 2)
-  //   .attr('fill', function(d){return color(d)})
-  //   .style('opacity', 0)
-  //   .transition()
-  //   .duration(2000)
-  //   .delay(300)
-  //   .style('opacity', 1)
+      .attrTween("transform", function(d, i, a) {
+        return d3.interpolateString(a, 'scale(1)')
+      });
+  });
 }
+
+export function getBestDestination(month, vals) {
+  d3.json('data/map_data.geojson').then(function(geojson) {
+
+    // var score = 0;
+    // var getScore = function(d) {
+    //   for (var key in vals) {
+    //     score+=vals[key]*standardize(d,month,key);
+    //   };
+    // };
+    var scores = [];
+    for (var i=0; i < geojson.features.length; i++) {
+      var score_dpt = 0;
+      for (var key in vals) {
+        score_dpt += (vals[key]-5)/5. * standardize(geojson.features[i], month, key);
+      }
+      scores.push(score_dpt);
+      console.log(i, score_dpt, standardize(geojson.features[i], month, key))
+    }
+    for (var i=0; i < geojson.features.length; i++) {
+      if (scores[i] == Math.max.apply(null, scores)) {
+        console.log(i)
+        deps.select("path:nth-child("+i+")")
+          .transition()
+          .duration(1000)
+          .attr("fill", "#ffffff")
+          // .attrTween("transform", function(d, i, a) {
+            // var scale = 2;
+            // var bb = this.getBBox();
+                  // return d3.interpolateString(a, 'scale('+scale+') translate('+((-10  -  170 * bb.x/500.)*scale/1.3)+', '+((-20 -  170 * bb.y/500.)*scale/1.3)+')')
+                  break;
+        }
+      }
+    })
+    };
+
+
+// }
