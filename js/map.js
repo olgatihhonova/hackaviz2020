@@ -212,7 +212,6 @@ export function resetColorBar() {
 
 export function resetMap() {
   deps.selectAll('path')
-    .data(geojson.features)
     .transition()
     .duration(1000)
     .attr('fill', '#fff');
