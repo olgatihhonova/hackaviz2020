@@ -46,7 +46,8 @@ var housing = document.getElementById(housingId);
 
 function monthValue() {
   var currentVal = month.value;
-  document.getElementById("button-message").innerHTML = "";
+  document.getElementById("error-message").innerHTML = "";
+  document.getElementById("winner-message").innerHTML = "";
   if (activeId != "none") {
     var activeEl = document.getElementById(activeId);
     var activeVal = activeEl.value;
@@ -66,7 +67,8 @@ function meteoValue() {
   var monthVal = month.value;
   activeId = meteoId;
   updateMap(monthVal, "meteo");
-  document.getElementById("button-message").innerHTML = "";
+  document.getElementById("error-message").innerHTML = "";
+  document.getElementById("winner-message").innerHTML = "";
 //  document.getElementById("button-message").innerHTML = "The current value of meteo is: " + currentVal + monthVal;
 }
 meteo.addEventListener("input", meteoValue);
@@ -76,7 +78,8 @@ function tempValue() {
   var monthVal = month.value;
   activeId = tempId;
   updateMap(monthVal, tempId);
-  document.getElementById("button-message").innerHTML = "";
+  document.getElementById("error-message").innerHTML = "";
+  document.getElementById("winner-message").innerHTML = "";
 
 //  document.getElementById("button-message").innerHTML = "The current value of temp is: " + currentVal + monthVal;
 }
@@ -87,7 +90,8 @@ function festivalValue() {
   var monthVal = month.value;
   activeId = festivalId;
   updateMap(monthVal, festivalId);
-  document.getElementById("button-message").innerHTML = "";
+  document.getElementById("error-message").innerHTML = "";
+  document.getElementById("winner-message").innerHTML = "";
 
 //  document.getElementById("button-message").innerHTML = "The current value of festival is: " + currentVal + monthVal;
 }
@@ -98,7 +102,8 @@ function popValue() {
   var monthVal = month.value;
   activeId = popId;
   updateMap(monthVal, popId);
-  document.getElementById("button-message").innerHTML = "";
+  document.getElementById("error-message").innerHTML = "";
+  document.getElementById("winner-message").innerHTML = "";
 
 //  document.getElementById("button-message").innerHTML = "The current value of pop is: " + currentVal + monthVal;
 }
@@ -109,7 +114,8 @@ function localValue() {
   var monthVal = month.value;
   activeId = localId;
   updateMap(monthVal, localId);
-  document.getElementById("button-message").innerHTML = "";
+  document.getElementById("error-message").innerHTML = "";
+  document.getElementById("winner-message").innerHTML = "";
 
 //  document.getElementById("button-message").innerHTML = "The current value of local is: " + currentVal + monthVal;
 }
@@ -120,7 +126,8 @@ function tourismValue() {
   var monthVal = month.value;
   activeId = tourismId;
   updateMap(monthVal, tourismId);
-  document.getElementById("button-message").innerHTML = "";
+  document.getElementById("error-message").innerHTML = "";
+  document.getElementById("winner-message").innerHTML = "";
 
 //  document.getElementById("button-message").innerHTML = "The current value of tourism is: " + currentVal + monthVal;
 }
@@ -131,7 +138,8 @@ function housingValue() {
   var monthVal = month.value;
   activeId = housingId;
   updateMap(monthVal, housingId);
-  document.getElementById("button-message").innerHTML = "";
+  document.getElementById("error-message").innerHTML = "";
+  document.getElementById("winner-message").innerHTML = "";
 
 //  document.getElementById("button-message").innerHTML = "The current value of housing is: " + currentVal + monthVal;
 }
@@ -161,10 +169,13 @@ function bestDestinationValue() {
         housing.value == housing.defaultValue ) {
 
     resetMap();
-    document.getElementById("button-message").innerHTML = "Sélectionnez des <span class='tip'>critères !</span>";
+    document.getElementById("error-message").innerHTML = "Sélectionnez des <span class='tip'>critères !</span>";
+    document.getElementById("winner-message").innerHTML = "";
   }
   else {
     getBestDestination(monthVal, vals);
+    document.getElementById("winner-message").innerHTML =
+    "<span style='color:#fff'>Vôtre destination idéale est : </span><br> Pyrenes-Orientales";
   }
 
   // document.getElementById("demo").innerHTML =
@@ -184,7 +195,8 @@ function resetParams() {
   housing.value = housing.defaultValue;
 
   resetMap();
-  document.getElementById("button-message").innerHTML = "";
+  document.getElementById("error-message").innerHTML = "";
+  document.getElementById("winner-message").innerHTML = "";
 }
 resetButton.addEventListener("click", resetParams);
 
