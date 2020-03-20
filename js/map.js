@@ -133,13 +133,13 @@ function standardize(d, month, feature) {
 }
 
 const label_feature = {
-  "meteo": ["Statut qualificatif moyen", "de la météo du département", "(0: très défavorable, 4: idéale)"],
+  "meteo": ["Conditions météorologiques", "moyennes", "(0: mauvaises, 4: idéales)"],
   "Temp_midi": ["Température moyenne à midi", "en degrés Celsius"],
   "nb_evt": ["Nombre moyen d'évènements", "majeurs par jour"],
-  "pop_dpt": ["Nombre d'habitants", "du département en 2018"],
-  "volume": ["Nombre de visiteurs", "moyen par jour"],
+  "pop_dpt": ["Nombre d'habitants", ""],
+  "volume": ["Nombre moyen de visiteurs", "présents chaque jour"],
   "frac_internationale": ["Fraction des visiteurs", "venant de l'étranger"],
-  "volume_sur_hbgt": ["Rapport entre le nombre", "de visiteurs moyen par jour et", "le nombre de places d'hébergement", " temporaire estimé"]
+  "volume_sur_hbgt": ["Rapport du nombre de visiteurs", "sur le nombre de places estimées", "d'hébergement temporaire", "(Hotels, Auberges, Camping, ...)"]
 }
 
 
