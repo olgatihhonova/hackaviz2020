@@ -82,26 +82,6 @@ legend.selectAll('text')
   .style('opacity', 0)
   .style("text-anchor", "middle")
 
-// var div_label = d3.select("div#map").append("div")
-//     .classed("label", true)
-//     .style("opacity", 0);
-
-const label = svg.append('g');
-// const label_text = ['blabla'];
-
-label.selectAll('text')
-  // .data(label_text)
-  // .enter()
-  // .append('text')
-  // .classed('label', true)
-  // .attr('x', x_init+100)
-  // .attr('y', y_init+80)
-  // .attr('width', 200)
-  // .attr('fill', 'white')
-  // .text(function(d){return d})
-  // .style('text-anchor', 'middle')
-  // .style('opacity', 0);
-
 // Setup map
 d3.json('data/map_data.geojson').then(function(geojson) {
 
@@ -163,59 +143,31 @@ const label_feature = {
 }
 
 
-const duration = 300;
+const delay = 0;
+const duration = 1000;
+const label = svg.append('g');
+// label.append('text')
+//   .attr('x', x_init+100)
+//   .attr('y', y_init+75)
+//   .style('opacity', 0);
+
+var old_feature = 'old';
+
+// const t = d3.transition()
+//   .duration(1000)
 
 export function updateMap(month, feature) {
   // Make colorbar appear
   colorbar.transition()
-    .duration(2000)
-    .delay(300)
+    .duration(duration/2)
+    .delay(duration/2)
     .style('opacity', 1);
   // Make legend ticks appear
   legend.selectAll('rect')
     .transition()
-    .duration(2000)
-    .delay(300)
+    .duration(duration/2)
+    .delay(duration/2)
     .style('opacity', 1);
-  // Make label appear
-  var labels = label.selectAll('text')
-    .data(label_feature[feature])
-  labels.exit()
-    .transition()
-    .duration(duration)
-    .style('opacity', 0)
-    .remove();
-  labels.enter()
-    .append('text')
-    .classed('label', true)
-    .attr('x', x_init+100)
-    .attr('y', y_init+75)
-    .attr('width', 200)
-    .attr('fill', 'white')
-    .attr('y', function(d,i){return y_init+75+i*28})
-    .style('text-anchor', 'middle')
-    .style('opacity', 0)
-    .transition()
-    .duration(duration)
-    .style('opacity', 1);
-
-  labels.transition()
-    .duration(duration)
-    .style('opacity', 0)
-    .transition()
-    .delay(duration)
-    .duration(duration)
-    .style('opacity', 1)
-    .text(function(d){return d;});
-    // div_label.transition()
-    //     .duration(2000)
-    //     .delay(300)
-    //     .style("opacity", 1);
-    // div_label.html(label_feature[feature])
-    //     .style("left", '500px')
-    //     .style("top", '500px')
-    //     .style("width", '20px')
-    //     .style("height", '100px');
 
   d3.json('data/map_data.geojson').then(function(geojson) {
 
@@ -236,13 +188,6 @@ export function updateMap(month, feature) {
         labels_data[i] = labels_data[i].toFixed(1);
       }
     }
-    legend.selectAll('text')
-      .data(labels_data)
-      .transition()
-      .duration(2000)
-      .delay(300)
-      .text(function(d){return d;})
-      .style('opacity', 1);
 
     // Update map colors
     deps.selectAll("path")
@@ -253,6 +198,59 @@ export function updateMap(month, feature) {
       .attrTween("transform", function(d, i, a) {
         return d3.interpolateString(a, 'scale(1)')
       });
+
+      // Make label appear
+      if (feature != old_feature) {
+        var labels = label.selectAll('text')
+          .data(label_feature[feature])
+
+        labels.exit()
+          .transition()
+          .delay(delay)
+          .duration(duration/2)
+          .style('opacity', 0)
+          .remove();
+
+        labels.enter()
+          .append('text')
+          .classed('label', true)
+          .attr('x', x_init+100)
+          .attr('y', y_init+75)
+          .attr('fill', 'white')
+          .attr('y', function(d,i){return y_init+75+i*28})
+          .style('text-anchor', 'middle')
+          .style('opacity', 0)
+          .transition()
+          .delay(duration/2)
+          .duration(duration/2)
+          .style('opacity', 1)
+          .text(function(d){return d;});
+
+        labels.transition()
+          .duration(duration/2)
+          .style('opacity', 0)
+          .transition()
+          // .delay(duration/3)
+          .duration(duration/3)
+          .attr('x', x_init+100)
+          .attr('fill', 'white')
+          .attr('y', function(d,i){return y_init+75+i*28})
+          .style('text-anchor', 'middle')
+          .style('opacity', 1)
+          .text(function(d){return d;});
+
+        legend.selectAll('text')
+          .data(labels_data)
+          .transition()
+          .duration(duration/2)
+          .style('opacity', 0)
+          .transition(duration/2)
+          .text(function(d){return d;})
+          .style('opacity', 1);
+
+        old_feature = feature;
+      }
+
   });
 }
 
