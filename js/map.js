@@ -146,15 +146,10 @@ const label_feature = {
 const delay = 0;
 const duration = 1000;
 const label = svg.append('g');
-// label.append('text')
-//   .attr('x', x_init+100)
-//   .attr('y', y_init+75)
-//   .style('opacity', 0);
 
 var old_feature = 'old';
+var old_month = -1;
 
-// const t = d3.transition()
-//   .duration(1000)
 
 export function updateMap(month, feature) {
   // Make colorbar appear
@@ -238,7 +233,6 @@ export function updateMap(month, feature) {
           .style('text-anchor', 'middle')
           .style('opacity', 1)
           .text(function(d){return d;});
-
         legend.selectAll('text')
           .data(labels_data)
           .transition()
@@ -247,10 +241,19 @@ export function updateMap(month, feature) {
           .transition(duration/2)
           .text(function(d){return d;})
           .style('opacity', 1);
-
         old_feature = feature;
       }
-
+      if (old_month != month) {
+        legend.selectAll('text')
+          .data(labels_data)
+          .transition()
+          .duration(duration/2)
+          .style('opacity', 0)
+          .transition(duration/2)
+          .text(function(d){return d;})
+          .style('opacity', 1);
+        old_month = month;
+      }
   });
 }
 
