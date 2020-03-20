@@ -58,8 +58,7 @@ var colorbar = svg.selectAll('g').append('g')
 // Setup legend
 var legend_data = [{'x': x_init, 'text': 'min', 'color': color_min}, {'x': x_init+100, 'text': 'middle', 'color': '#fff'}, {'x': x_init+200, 'text': 'max', 'color': color_max}];
 
-var legend = svg.append('g')
-
+var legend = svg.append('g');
 
 legend.selectAll('rect')
   .data(legend_data)
@@ -83,6 +82,25 @@ legend.selectAll('text')
   .style('opacity', 0)
   .style("text-anchor", "middle")
 
+// var div_label = d3.select("div#map").append("div")
+//     .classed("label", true)
+//     .style("opacity", 0);
+
+const label = svg.append('g');
+// const label_text = ['blabla'];
+
+label.selectAll('text')
+  // .data(label_text)
+  // .enter()
+  // .append('text')
+  // .classed('label', true)
+  // .attr('x', x_init+100)
+  // .attr('y', y_init+80)
+  // .attr('width', 200)
+  // .attr('fill', 'white')
+  // .text(function(d){return d})
+  // .style('text-anchor', 'middle')
+  // .style('opacity', 0);
 
 // Setup map
 d3.json('data/map_data.geojson').then(function(geojson) {
@@ -134,7 +152,18 @@ function standardize(d, month, feature) {
   return (2*d.properties.data[month-1][feature] - d.properties.data[month-1][feature+'_max'] - d.properties.data[month-1][feature+'_min']) / (d.properties.data[month-1][feature+'_max'] - d.properties.data[month-1][feature+'_min'])
 }
 
+const label_feature = {
+  "meteo": ["Statut qualificatif moyen", "de la météo du département", "(0: très défavorable, 4: idéale)"],
+  "Temp_midi": ["Température moyenne à midi", "en degrés Celsius"],
+  "nb_evt": ["Nombre moyen d'évènements", "majeurs par jour"],
+  "pop_dpt": ["Nombre d'habitants", "du département en 2018"],
+  "volume": ["Nombre de visiteurs", "moyen par jour"],
+  "frac_internationale": ["Fraction des visiteurs", "venant de l'étranger"],
+  "volume_sur_hbgt": ["Rapport entre le nombre", "de visiteurs moyen par jour et", "le nombre de places d'hébergement", " temporaire estimé"]
+}
 
+
+const duration = 300;
 
 export function updateMap(month, feature) {
   // Make colorbar appear
@@ -148,6 +177,45 @@ export function updateMap(month, feature) {
     .duration(2000)
     .delay(300)
     .style('opacity', 1);
+  // Make label appear
+  var labels = label.selectAll('text')
+    .data(label_feature[feature])
+  labels.exit()
+    .transition()
+    .duration(duration)
+    .style('opacity', 0)
+    .remove();
+  labels.enter()
+    .append('text')
+    .classed('label', true)
+    .attr('x', x_init+100)
+    .attr('y', y_init+75)
+    .attr('width', 200)
+    .attr('fill', 'white')
+    .attr('y', function(d,i){return y_init+75+i*28})
+    .style('text-anchor', 'middle')
+    .style('opacity', 0)
+    .transition()
+    .duration(duration)
+    .style('opacity', 1);
+
+  labels.transition()
+    .duration(duration)
+    .style('opacity', 0)
+    .transition()
+    .delay(duration)
+    .duration(duration)
+    .style('opacity', 1)
+    .text(function(d){return d;});
+    // div_label.transition()
+    //     .duration(2000)
+    //     .delay(300)
+    //     .style("opacity", 1);
+    // div_label.html(label_feature[feature])
+    //     .style("left", '500px')
+    //     .style("top", '500px')
+    //     .style("width", '20px')
+    //     .style("height", '100px');
 
   d3.json('data/map_data.geojson').then(function(geojson) {
 
@@ -198,6 +266,10 @@ export function resetColorBar() {
     .duration(1000)
     .style('opacity', 0);
   legend.selectAll('text')
+    .transition()
+    .duration(1000)
+    .style('opacity', 0);
+  label.selectAll('text')
     .transition()
     .duration(1000)
     .style('opacity', 0);
