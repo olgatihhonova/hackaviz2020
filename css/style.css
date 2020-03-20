@@ -315,6 +315,7 @@ h1, h2, h3, h4, h5, h6, figure {
   -o-transform: skewY(-7deg);
   transform: skewY(-7deg);
   text-align: center;
+  margin: 30px 0px;
 }
 
 #fh5co-header .display-tc,
@@ -1806,5 +1807,24 @@ button:active {
   /* font-family: 'Amatic SC'; */
   /* font-weight: bold; */
   font-size: 20px;
+}
+
+#fh5co-header img {
+  //position: relative;
+  //display: block;
+  //align-items: center;
+  max-width: 60%;
+  height: auto;
+  margin-bottom: 10px;
+}
+@media screen and (max-width: 992px) {
+  #fh5co-header img {
+    max-width: 90%;
+  }
+}
+@media screen and (max-width: 768px) {
+  #fh5co-header img {
+    max-width: 85%;
+  }
 }
 /*# sourceMappingURL=style.css.map */
