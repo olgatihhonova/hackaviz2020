@@ -281,7 +281,9 @@ export function resetMap() {
     .transition()
     .duration(1000)
     .attr('fill', '#fff');
-  resetColorBar()
+  resetColorBar();
+  old_month = '-1';
+  old_feature = 'old';
 }
 
 
