@@ -333,6 +333,12 @@ h1, h2, h3, h4, h5, h6, figure {
   color: #1f7a8c;
   //color: #ffba08;
 }
+
+@media screen and (max-width: 1000px) {
+    #fh5co-intro .display-tc h1 {
+        margin-top: 0px;
+    }
+}
 #fh5co-intro .display-tc p {
   color: #ffffff;
   font-size: 21px;
@@ -1662,7 +1668,8 @@ input[type="text"] {
 	text-align: center;
 	text-decoration: none;
 	overflow: hidden;
-	margin-top: 20px;
+	margin: 20px;
+	margin-bottom: 70px;
 }
 
 .buttonmap:hover {
@@ -1822,6 +1829,7 @@ button:active {
   max-width: 60%;
   height: auto;
   margin-bottom: 10px;
+  margin-top: 70px;
 }
 @media screen and (max-width: 992px) {
   #fh5co-header img {
@@ -1833,4 +1841,34 @@ button:active {
     max-width: 85%;
   }
 }
+#fh5co-intro img {
+  position: relative;
+  max-width: 23%;
+  height: auto;
+  align-items: left;
+  padding: 50px;
+  padding-bottom: 0px;
+  margin-bottom: -120px;
+}
+@media screen and (max-width: 1600px) {
+  #fh5co-intro img {
+    max-width: 25%;
+    padding: 40px;
+  }
+}
+@media screen and (max-width: 1000px) {
+  #fh5co-intro img {
+    max-width: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0px;
+    //padding-bottom: 0px;
+    //margin-bottom: -80px;
+    left: -4%;
+  }
+}
+
+
+
 /*# sourceMappingURL=style.css.map */
