@@ -149,7 +149,7 @@ const label = svg.append('g');
 
 var old_feature = 'old';
 var old_month = -1;
-
+var just_got_best = false;
 
 export function updateMap(month, feature) {
   // Make colorbar appear
@@ -195,7 +195,7 @@ export function updateMap(month, feature) {
       });
 
       // Make label appear
-      if (feature != old_feature) {
+      if ((feature != old_feature)||(just_got_best==true)) {
         var labels = label.selectAll('text')
           .data(label_feature[feature])
 
@@ -243,7 +243,7 @@ export function updateMap(month, feature) {
           .style('opacity', 1);
         old_feature = feature;
       }
-      if (old_month != month) {
+      if ((old_month != month)||(just_got_best==true)) {
         legend.selectAll('text')
           .data(labels_data)
           .transition()
@@ -254,6 +254,7 @@ export function updateMap(month, feature) {
           .style('opacity', 1);
         old_month = month;
       }
+      just_got_best = false;
   });
 }
 
@@ -288,6 +289,7 @@ export function resetMap() {
 
 
 export function getBestDestination(month, vals) {
+  just_got_best = true;
   d3.json('data/map_data.geojson').then(function(geojson) {
 
     var scores = [];
