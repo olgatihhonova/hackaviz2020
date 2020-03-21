@@ -1736,8 +1736,8 @@ button:active {
     color: #0d2c54;
 }
 
-.message-container {
-  margin-top: 40px;
+.error-container {
+  margin-top: 60px;
   height: 50px;
   display: flex;
   justify-content: center;
@@ -1746,7 +1746,7 @@ button:active {
   font-weight: bold;
 }
 
-#button-message {
+#error-message {
   font-family: 'Amatic SC', 'Heveltica Neue', Arial, sans-serif;
   color: #F8333C;
   font-size: 20px;
@@ -1863,12 +1863,37 @@ button:active {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 0px;
-    //padding-bottom: 0px;
-    //margin-bottom: -80px;
     left: -4%;
   }
 }
 
+
+.winner {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  transform: translateX(-50%);
+  top: -7%;
+  text-align: center;
+}
+
+@media screen and (max-width: 1200px) {
+  .winner {
+    top: -10%;
+  }
+}
+
+.winner h1 {
+  color: #F8333C;
+  font-size: 40px;
+}
+
+@media screen and (max-width: 992px) {
+  .winner h1 {
+    font-size: 33px;
+  }
+}
 
 
 /*# sourceMappingURL=style.css.map */
