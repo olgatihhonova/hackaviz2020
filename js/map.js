@@ -302,9 +302,11 @@ export function getBestDestination(month, vals) {
     }
 
     var best = []
+    var best_names = []
     for (var i=0; i < geojson.features.length; i++) {
       if (scores[i] == Math.max.apply(null, scores)) {
         best.push(1);
+        best_names.push(geojson.features[i].properties.nom_dpt)
       }
       else {
         best.push(0);
@@ -316,5 +318,6 @@ export function getBestDestination(month, vals) {
         .attr('fill', function(d,i) {if (best[i]==1) {return '#F8333C';} else { return '#fff';}})
       resetColorBar();
     }
+    return best_names;
   });
 }
