@@ -94,9 +94,6 @@ d3.json('data/map_data.geojson').then(function(geojson) {
     .attr("stroke", color_border)
     .attr("stroke-width", 3)
     .on("mouseover", function(d) {
-        var scale = 1.6;
-        var bb = this.getBBox();
-
         div.transition()
             .duration(200)
             .style("opacity", 1);
