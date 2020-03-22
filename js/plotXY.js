@@ -1,20 +1,22 @@
-const line_color = '#000';
+const line_color = '#FFB400';
 const selection_color = '#F8333C';
 
 // Set the dimensions of the canvas / graph
-var margin = {top: 30, right: 20, bottom: 30, left: 50},
-    width = 810 - margin.left - margin.right,
-    height = 600 - margin.top - margin.bottom;
+var margin = {top: 30, right: 20, bottom: 100, left: 120},
+    width = 810,
+    height = 600;
+
+const mois = ['Jan.', 'Fév.', 'Mars', 'Avr.', 'Mai', 'Juin', 'Juill.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'];
 
 var svg = d3.select("div#plotxy")
-  .classed("svg-container", true)
+  // .classed("svg-container", true)
   .append("svg")
-  .attr("width", width + margin.left + margin.right)
-  .attr("height", height + margin.top + margin.bottom)
+  // .attr("width", width + margin.left + margin.right)
+  // .attr("height", height + margin.top + margin.bottom)
   .attr("preserveAspectRatio", "xMinYMin meet")
-  // .attr("viewBox", "0 0 "+width+" "+height)
+  .attr("viewBox", "0 0 "+width+" "+height)
   //class to make it responsive
-  .classed("svg-content-responsive", true)
+  // .classed("svg-content-responsive", true)
   .append("g")
   .attr("transform",
     "translate(" + margin.left + "," + margin.top + ")");
@@ -22,8 +24,8 @@ var svg = d3.select("div#plotxy")
 
 
 // Set the ranges
-var x = d3.scaleLinear().range([0, width]);
-var y = d3.scaleLinear().range([height, 0]);
+var x = d3.scaleLinear().range([0, width - margin.left - margin.right]);
+var y = d3.scaleLinear().range([height - margin.top - margin.bottom, 0]);
 
 // Define the axes
 var xAxis = d3.axisBottom(x);
@@ -116,7 +118,7 @@ d3.json('data/map_data.geojson').then(function(geojson) {
     .attr("fill", "none")
     .attr("stroke", line_color)
     .attr("stroke-width", 10)
-    .attr('opacity', 0.1)
+    .attr('opacity', 0.2)
     .attr("d", function(d) { return valueline(d.properties.data, y_feat); })
     .on("mouseover", function (d) {
       d3.select(this)
@@ -129,14 +131,14 @@ d3.json('data/map_data.geojson').then(function(geojson) {
           .style("opacity", 1);
       div.html(d.properties.nom_dpt)
           .style("left", getTooltipXposition(div))
-          .style("top", d3.event.clientY - svg.node().getBoundingClientRect().y + "px");
+          .style("top", d3.event.clientY - svg.node().getBoundingClientRect().y + 10 + "px");
     })
     .on('mousemove', function(d) {
       div.transition()
          .duration(0)
          .style("opacity",  1);
       div.style("left", getTooltipXposition(div))
-         .style("top", d3.event.clientY - svg.node().getBoundingClientRect().y + "px");
+         .style("top", d3.event.clientY - svg.node().getBoundingClientRect().y + 10 + "px");
     })
     .on("mouseout", function(d) {
         d3.select(this)
@@ -151,18 +153,26 @@ d3.json('data/map_data.geojson').then(function(geojson) {
     })
 
     x_bar.attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
-      .call(xAxis);
+      .attr("transform", "translate(0," + (height-margin.top-margin.bottom) + ")")
+      .call(xAxis)
+      .selectAll("text")
+        .data(mois)
+        .style("text-anchor", "end")
+        .attr("dx", "-.8em")
+        .attr("dy", ".15em")
+        .attr("transform", "rotate(-65)" )
+        .text(function(d) { return d; })
+
     y_bar.attr("class", "y axis")
       .call(yAxis);
 })
 
 function getTooltipXposition(div){
   if (div.node().getBoundingClientRect().width + d3.event.clientX < (window.innerWidth - 30) ) {
-    return (d3.event.clientX - svg.node().getBoundingClientRect().x + 20 + "px");
+    return (d3.event.clientX - svg.node().getBoundingClientRect().x + 70 + "px");
   }
   else {
-    return (window.innerWidth - 30 - div.node().getBoundingClientRect().width - svg.node().getBoundingClientRect().x + 20 + "px");
+    return (window.innerWidth - 30 - div.node().getBoundingClientRect().width - svg.node().getBoundingClientRect().x + 70 + "px");
   }
 };
 
@@ -189,8 +199,16 @@ export function updatePlot(feature, nom_dpt) {
       .attr("d", function(d) { return valueline(d.properties.data, feature); })
       .attr("stroke", function(d) { if( d.properties.nom_dpt==nom_dpt ) { return selection_color; } else { return line_color; }})
       .attr("opacity", function(d) { if( d.properties.nom_dpt==nom_dpt ) { return 1; } else { return 0.1; }})
-    x_bar.transition(t_update) // change the x axis
-        .call(xAxis);
+    // x_bar.transition(t_update) // change the x axis
+    //     .call(xAxis)
+    //     .selectAll("text")
+    //       .data(mois)
+    //       .style("text-anchor", "end")
+    //       .attr("dx", "-.8em")
+    //       .attr("dy", ".15em")
+    //       .attr("transform", "rotate(-65)" )
+    //       .text(function(d) { return d; })
+
     y_bar.transition(t_update)// change the y axis
         .call(yAxis);
 

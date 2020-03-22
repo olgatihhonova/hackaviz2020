@@ -1497,8 +1497,8 @@ input[type="text"] {
 }
 
 
-/* tooltip for D3 map*/
-#map .tooltip {
+/* tooltip for D3 map and plotXY*/
+#map .tooltip, #plotxy .tooltip {
     position: absolute;
     text-align: center;
     font-family: 'Amatic SC', 'Heveltica Neue', Arial, sans-serif;
@@ -1514,6 +1514,20 @@ input[type="text"] {
        1px 1px 0 #0d2c54;*/
 }
 
+#plotxy .axis path,
+.axis line {
+    fill: none;
+    stroke: white;
+    stroke-width: 4;
+    shape-rendering: crispEdges;
+}
+
+#plotxy .axis text {
+    font-family: "Inconsolata", Arial, sans-serif;
+    color: #FFF;
+    font-size: 20px;
+    font-weight: 400;
+}
 
 /* range slider */
 .value {
@@ -1904,7 +1918,7 @@ button:active {
 
 .radio-container {
   position: relative;
-  padding-left: 70px;
+  padding-left: 110px;
   margin-bottom: 30px;
   cursor: pointer;
   //font-size: 23px;
