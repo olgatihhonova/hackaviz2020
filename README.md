@@ -15,9 +15,6 @@ Données aggrégées par mois et par département.
 
 # To do list
 
-- Page 2:
-  - Ajouter une ligne de text sur le plotXY
-
 - Page 3:
   - Add 42
   - (Remove volume_sur_hbgt)
