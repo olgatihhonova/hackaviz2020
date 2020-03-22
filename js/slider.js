@@ -1,4 +1,5 @@
 import {updateMap, getBestDestination, resetMap} from './map.js'
+import {updatePlot} from './plotXY.js'
 
 
 /* show the right month */
@@ -148,14 +149,18 @@ housing.addEventListener("input", housingValue);
 
 /* update destination name as a callback */
 function setDestinationName(destinationName) {
-    if (destinationName.length == 1){
-        document.getElementById("winner-message").innerHTML =
-        "<span style='color:#fff'>Vôtre destination idéale est : </span><br> "+destinationName[0];
-    }
-    else {
-        document.getElementById("winner-message").innerHTML =
-        "<span style='color:#fff'>Vos destinations idéales sont : </span><br> les rouges";
-    }
+    var delayInMilliseconds = 1000;
+    setTimeout(function() {
+        if (destinationName.length == 1){
+            document.getElementById("winner-message").innerHTML =
+            "<span style='color:#fff'>Vôtre destination idéale est : </span><br> "+destinationName[0];
+            document.getElementById("winner-message").fadeIn();
+        }
+        else {
+            document.getElementById("winner-message").innerHTML =
+            "<span style='color:#fff'>Vos destinations idéales sont : </span><br> les rouges";
+        }
+    }, delayInMilliseconds);
 }
 
 /* extract all slider values to use for best destination calc */
@@ -210,6 +215,47 @@ function resetParams() {
   document.getElementById("winner-message").innerHTML = "";
 }
 resetButton.addEventListener("click", resetParams);
+
+
+
+
+
+var radio_meteo = document.getElementById("radio-"+meteoId);
+var radio_temp = document.getElementById("radio-"+tempId);
+var radio_festival = document.getElementById("radio-"+festivalId);
+var radio_pop = document.getElementById("radio-"+popId);
+var radio_local = document.getElementById("radio-"+localId);
+var radio_tourism = document.getElementById("radio-"+tourismId);
+var radio_housing = document.getElementById("radio-"+housingId);
+
+function updatePlotMeteo() {
+  updatePlot(meteoId);}
+radio_meteo.addEventListener("input", updatePlotMeteo);
+
+function updatePlotTemp() {
+  updatePlot(tempId);}
+radio_temp.addEventListener("input", updatePlotTemp);
+
+function updatePlotFestival() {
+  updatePlot(festivalId);}
+radio_festival.addEventListener("input", updatePlotFestival);
+
+function updatePlotPop() {
+  updatePlot(popId);}
+radio_pop.addEventListener("input", updatePlotPop);
+
+function updatePlotLocal() {
+  updatePlot(localId);}
+radio_local.addEventListener("input", updatePlotLocal);
+
+function updatePlotTourism() {
+  updatePlot(tourismId);}
+radio_tourism.addEventListener("input", updatePlotTourism);
+
+function updatePlotHousing() {
+  updatePlot(housingId);}
+radio_housing.addEventListener("input", updatePlotHousing);
+
 
 
 
