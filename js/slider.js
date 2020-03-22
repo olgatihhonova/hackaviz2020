@@ -75,7 +75,7 @@ function meteoValue() {
   var currentVal = meteo.value;
   var monthVal = month.value;
   activeId = meteoId;
-  
+
   updateMap(monthVal, "meteo");
 
   document.getElementById("error-message").innerHTML = "";
