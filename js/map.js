@@ -11,7 +11,6 @@ export var selected_dpt = '';
 
 export function updateSelection(selec) {
   selected_dpt = selec;
-  console.log(selected_dpt);
 }
 
 d3.selection.prototype.moveToFront = function() {

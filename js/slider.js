@@ -253,7 +253,7 @@ function resetParams() {
 }
 resetButton.addEventListener("click", resetParams);
 
-function updatePlotMeteo() { console.log(selected_dpt); updatePlot(meteoId, selected_dpt);}
+function updatePlotMeteo() {updatePlot(meteoId, selected_dpt);}
 radio_meteo.addEventListener("input", updatePlotMeteo);
 
 function updatePlotTemp() { updatePlot(tempId, selected_dpt);}
