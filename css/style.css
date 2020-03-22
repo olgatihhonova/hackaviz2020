@@ -1911,7 +1911,7 @@ button:active {
   text-align: center;
 }
 .plot-title {
-  left: 60%;
+  left: 59%;
 }
 @media screen and (max-width: 1200px) {
   .winner, .plot-title {

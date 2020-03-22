@@ -33,7 +33,7 @@ var festivalId = "nb_evt";
 var popId = "pop_dpt";
 var localId = "volume";
 var tourismId = "frac_internationale";
-var housingId = "volume_sur_hbgt";
+//var housingId = "volume_sur_hbgt";
 var activeId = "none"
 
 var month = document.getElementById(monthId);
@@ -43,7 +43,7 @@ var festival = document.getElementById(festivalId);
 var pop = document.getElementById(popId);
 var local = document.getElementById(localId);
 var tourism = document.getElementById(tourismId);
-var housing = document.getElementById(housingId);
+//var housing = document.getElementById(housingId);
 
 var radio_meteo = document.getElementById("radio-"+meteoId);
 var radio_temp = document.getElementById("radio-"+tempId);
@@ -51,7 +51,7 @@ var radio_festival = document.getElementById("radio-"+festivalId);
 var radio_pop = document.getElementById("radio-"+popId);
 var radio_local = document.getElementById("radio-"+localId);
 var radio_tourism = document.getElementById("radio-"+tourismId);
-var radio_housing = document.getElementById("radio-"+housingId);
+//var radio_housing = document.getElementById("radio-"+housingId);
 
 function monthValue() {
   var currentVal = month.value;
@@ -167,6 +167,7 @@ function tourismValue() {
 }
 tourism.addEventListener("input", tourismValue);
 
+/*
 function housingValue() {
   var currentVal = housing.value;
   var monthVal = month.value;
@@ -182,6 +183,7 @@ function housingValue() {
 //  document.getElementById("button-message").innerHTML = "The current value of housing is: " + currentVal + monthVal;
 }
 housing.addEventListener("input", housingValue);
+*/
 
 
 /* update destination name as a callback */
@@ -211,7 +213,7 @@ function bestDestinationValue() {
      'pop_dpt' : pop.value,
      'volume' : local.value,
      'frac_internationale' : tourism.value,
-     'volume_sur_hbgt' : housing.value
+     //'volume_sur_hbgt' : housing.value
   }
   activeId = "none"
 
@@ -220,8 +222,9 @@ function bestDestinationValue() {
         festival.value == festival.defaultValue &&
         pop.value == pop.defaultValue &&
         local.value == local.defaultValue &&
-        tourism.value == tourism.defaultValue &&
-        housing.value == housing.defaultValue ) {
+        tourism.value == tourism.defaultValue
+        //&& housing.value == housing.defaultValue
+        ) {
 
     resetMap();
     document.getElementById("error-message").innerHTML = "Sélectionnez des <span class='tip'>critères !</span>";
@@ -244,7 +247,7 @@ function resetParams() {
   pop.value = pop.defaultValue;
   local.value = local.defaultValue;
   tourism.value = tourism.defaultValue;
-  housing.value = housing.defaultValue;
+  //housing.value = housing.defaultValue;
   activeId = "none"
 
   resetMap();
@@ -271,8 +274,8 @@ radio_local.addEventListener("input", updatePlotLocal);
 function updatePlotTourism() { updatePlot(tourismId, selected_dpt);}
 radio_tourism.addEventListener("input", updatePlotTourism);
 
-function updatePlotHousing() { updatePlot(housingId, selected_dpt);}
-radio_housing.addEventListener("input", updatePlotHousing);
+//function updatePlotHousing() { updatePlot(housingId, selected_dpt);}
+//radio_housing.addEventListener("input", updatePlotHousing);
 
 
 /* add title to the plot */
