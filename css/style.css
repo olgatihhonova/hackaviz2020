@@ -1929,11 +1929,18 @@ button:active {
 }
 
 
-
+.radio-selection {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
 
 .radio-container {
   position: relative;
-  padding-left: 110px;
+  //padding-left: 110px;
+  margin-right: 12%;
   margin-bottom: 30px;
   cursor: pointer;
   //font-size: 23px;
@@ -1949,9 +1956,32 @@ button:active {
   //flex-wrap: wrap;
   left: -50%;
 }
+
 .radio-label {
     position: relative;
     left: 50%;
+    margin-left: 35px;
+}
+
+@media screen and (max-width: 992px) {
+    .radio-container {
+        left: 0%;
+    }
+    .radio-label {
+        margin-left: 30px;
+    }
+}
+@media screen and (max-width: 768px) {
+    .radio-selection {
+        //justify-content: left;
+    }
+    .radio-container {
+        margin-right: 10%;
+    }
+    .radio-label {
+        margin-left: 27px;
+        width: 120px;
+    }
 }
 
 /* Hide the browser's default radio button */
@@ -1959,6 +1989,9 @@ button:active {
   position: absolute;
   opacity: 0;
   cursor: pointer;
+  bottom: 50%;
+  left: 50%;
+  transform: translate(-50%, 50%);
 }
 
 /* Create a custom radio button */
