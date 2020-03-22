@@ -1881,6 +1881,26 @@ button:active {
   margin-bottom: 10px;
   margin-top: 70px;
 }
+
+
+.img-42 {
+  position: relative;
+}
+#map img {
+  height: 420px;
+  position: absolute;
+  top: -1em;
+  right: 0px;
+}
+
+@media screen and (max-width: 992px) {
+  #map img {
+    position: relative;
+    float: right;
+    margin-bottom: -100px;
+  }
+}
+
 @media screen and (max-width: 992px) {
   #fh5co-header img,
   #footer img {
