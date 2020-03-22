@@ -23,16 +23,12 @@ Données aggrégées par mois et par département.
   - (Remove volume_sur_hbgt)
 
 - Page 4:
-  - Add labels - T
-  - diminish density of y-ticks - T
   - Add dpt title when selected - O
-  - Keep dpt selected when using buttons - T
-  - Select corresponding button feature when clicking on map - O
   - Change plot color - T
-  - add padding to y-labels - T
-  - fix tooltip position - T
-  - swaper plot/bouttons - O
   - Babel fish - O
+  - Fix click outside of map - OT
+  - Fix 1200 jump - O
+  - When resize put buttons on one / two line - O
 
 - Page 5 footer:
   - Dans le cadre du Hackaton

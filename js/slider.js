@@ -1,6 +1,6 @@
 import {updateMap, getBestDestination, resetMap} from './map.js'
 import {updatePlot} from './plotXY.js'
-
+import {selected_dpt} from './map.js'
 
 /* show the right month */
 var elem = document.getElementById("month");
@@ -253,26 +253,25 @@ function resetParams() {
 }
 resetButton.addEventListener("click", resetParams);
 
-
-function updatePlotMeteo() { updatePlot(meteoId);}
+function updatePlotMeteo() { console.log(selected_dpt); updatePlot(meteoId, selected_dpt);}
 radio_meteo.addEventListener("input", updatePlotMeteo);
 
-function updatePlotTemp() { updatePlot(tempId);}
+function updatePlotTemp() { updatePlot(tempId, selected_dpt);}
 radio_temp.addEventListener("input", updatePlotTemp);
 
-function updatePlotFestival() { updatePlot(festivalId);}
+function updatePlotFestival() { updatePlot(festivalId, selected_dpt);}
 radio_festival.addEventListener("input", updatePlotFestival);
 
-function updatePlotPop() { updatePlot(popId);}
+function updatePlotPop() { updatePlot(popId, selected_dpt);}
 radio_pop.addEventListener("input", updatePlotPop);
 
-function updatePlotLocal() { updatePlot(localId);}
+function updatePlotLocal() { updatePlot(localI, selected_dptd);}
 radio_local.addEventListener("input", updatePlotLocal);
 
-function updatePlotTourism() { updatePlot(tourismId);}
+function updatePlotTourism() { updatePlot(tourismId, selected_dpt);}
 radio_tourism.addEventListener("input", updatePlotTourism);
 
-function updatePlotHousing() { updatePlot(housingId);}
+function updatePlotHousing() { updatePlot(housingId, selected_dpt);}
 radio_housing.addEventListener("input", updatePlotHousing);
 
 

@@ -7,6 +7,8 @@ var color_min = '#0e9aaf'
 var color_max = '#ffb400'
 var color_border = '#0d2c54'
 
+export var selected_dpt = '';
+
 d3.selection.prototype.moveToFront = function() {
   return this.each(function(){
     this.parentNode.appendChild(this);
@@ -121,6 +123,7 @@ d3.json('data/map_data.geojson').then(function(geojson) {
     })
     .on("click", function(d) {
       var feat = (old_feature == 'old') ? 'meteo' : old_feature;
+      selected_dpt = d.properties.nom_dpt;
       updatePlot(feat, d.properties.nom_dpt);
     })
 });
