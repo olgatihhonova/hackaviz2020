@@ -1082,8 +1082,9 @@ h1, h2, h3, h4, h5, h6, figure {
   background: #ffb400;
   color: #1f7a8c;
   font-family: 'Amatic SC', 'Heveltica Neue', Arial, sans-serif;
-  font-weight: 400;
+  font-weight: 800;
   font-type: bold;
+  font-size: 22px;
 }
 
 #footer .fh5co-footer-links {
@@ -1117,7 +1118,8 @@ h1, h2, h3, h4, h5, h6, figure {
 }
 #footer .fh5co-widget h4 {
   margin-bottom: 30px;
-  font-size: 20px;
+  font-size: 22px;
+  font-weight: 800;
 }
 #footer .copyright .block {
   display: block;
