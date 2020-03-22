@@ -193,7 +193,7 @@ function setDestinationName(destinationName) {
         if (destinationName.length == 1){
             document.getElementById("winner-message").innerHTML =
             "<span style='color:#fff'>Vôtre destination idéale est : </span><br> "+destinationName[0];
-            document.getElementById("winner-message").fadeIn();
+            //document.getElementById("winner-message").fadeIn();
         }
         else {
             document.getElementById("winner-message").innerHTML =
