@@ -15,15 +15,24 @@ Données aggrégées par mois et par département.
 
 # To do list
 
+- Page 2:
+  - Ajouter une ligne de text sur le plotXY
+
 - Page 3:
-  - Fix bug: reset -> don't change month -> don't change feature
-  - Fonction pour avoir le nom du vainqueur
   - Add 42
   - (Remove volume_sur_hbgt)
 
 - Page 4:
-  - Updatable XY plot with data for each department in Grey and for the selected department in Yellow/Red
-  - Babel fish
+  - Add labels - T
+  - diminish density of y-ticks - T
+  - Add dpt title when selected - O
+  - Keep dpt selected when using buttons - T
+  - Select corresponding button feature when clicking on map - O
+  - Change plot color - T
+  - add padding to y-labels - T
+  - fix tooltip position - T
+  - swaper plot/bouttons - O
+  - Babel fish - O
 
 - Page 5 footer:
   - Dans le cadre du Hackaton
@@ -33,3 +42,15 @@ Données aggrégées par mois et par département.
 
 
 - Clean template
+
+
+# plotXY
+
+- Par défaut: Plot XY Volume
+
+- geojson en entrée
+  - fonction pour récupérer X axis (mois)
+  - fonction pour récupérer n'importe quelle feature pour chaque département
+
+- updatePlot pour updater avec n'importe quelle autre feature
+- highlightCurve pour mettre en avant n'importe quelle courbe
