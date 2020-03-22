@@ -18,31 +18,26 @@ Données aggrégées par mois et par département.
 - Page 3:
   - Add 42
   - (Remove volume_sur_hbgt)
+  - bug slider en diminuant la fenetre
 
 - Page 4:
-  - Add dpt title when selected - O
+  - Add dpt title when selecting line- O
   - Change plot color - T
   - Babel fish - O
+<<<<<<< Updated upstream
   - Burn it!!! Fix click outside of map - OT
   - Fix 1200 jump - O
+=======
+>>>>>>> Stashed changes
+
+
+
 
 - Page 5 footer:
-  - Dans le cadre du Hackaton
-  - Bref description des données
-  - ©
-  - (Thank you for the fish)
+  - Site web réalisé avec amour pour <a href="https://fr.wikipedia.org/wiki/Douglas_Adams">Douglas Adams</a> dans le cadre du <a href="https://toulouse-dataviz.fr/hackaviz-2020">Toulouse Hackaviz 2020</a>.
+  - Les visualisations sont basées sur un <a href=https://github.com/ToulouseDataViz/Hackaviz2020>jeu de données</a> couvrant l'année 2018, compilées par l'association <a href="http://toulouse-dataviz.fr/">Toulouse DataViz</a>.
+  - © 2020 Equipe Pixel & Poivre
+  -   Salut, et encore merci pour le poisson
 
 
 - Clean template
-
-
-# plotXY
-
-- Par défaut: Plot XY Volume
-
-- geojson en entrée
-  - fonction pour récupérer X axis (mois)
-  - fonction pour récupérer n'importe quelle feature pour chaque département
-
-- updatePlot pour updater avec n'importe quelle autre feature
-- highlightCurve pour mettre en avant n'importe quelle courbe
