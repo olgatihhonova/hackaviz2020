@@ -1,8 +1,10 @@
+import {label_feature} from './map.js'
+
 const line_color = '#FFF';
 const selection_color = '#F8333C';
 
 // Set the dimensions of the canvas / graph
-var margin = {top: 30, right: 20, bottom: 100, left: 120},
+var margin = {top: 80, right: 20, bottom: 160, left: 200},
     width = 810,
     height = 600;
 
@@ -29,7 +31,7 @@ var y = d3.scaleLinear().range([height - margin.top - margin.bottom, 0]);
 
 // Define the axes
 var xAxis = d3.axisBottom(x);
-var yAxis = d3.axisLeft(y);
+var yAxis = d3.axisLeft(y).ticks(7);
 
 function valueline(data, feature) {
   var path = d3.line()
@@ -53,6 +55,8 @@ var x_bar = svg.append("g");
 var y_bar = svg.append("g");
 // Add group for lines
 var lines = svg.append("g");
+// Add group for y-label
+const label = svg.append('g');
 
 
 function getMax(data, feature) {
@@ -92,6 +96,9 @@ var t_mouseout = d3.transition()
 // transitions for updates
 var t_update = d3.transition("update")
   .duration(1000);
+// transition for labels
+var duration = 200;
+var delay = 0;
 
 var selected_dpt = ''
 
@@ -131,14 +138,14 @@ d3.json('data/map_data.geojson').then(function(geojson) {
           .style("opacity", 1);
       div.html(d.properties.nom_dpt)
           .style("left", getTooltipXposition(div))
-          .style("top", d3.event.clientY - svg.node().getBoundingClientRect().y + 10 + "px");
+          .style("top", d3.event.clientY - svg.node().getBoundingClientRect().y + 60 + "px");
     })
     .on('mousemove', function(d) {
       div.transition()
          .duration(0)
          .style("opacity",  1);
       div.style("left", getTooltipXposition(div))
-         .style("top", d3.event.clientY - svg.node().getBoundingClientRect().y + 10 + "px");
+         .style("top", d3.event.clientY - svg.node().getBoundingClientRect().y + 60 + "px");
     })
     .on("mouseout", function(d) {
         d3.select(this)
@@ -161,21 +168,45 @@ d3.json('data/map_data.geojson').then(function(geojson) {
         .attr("dx", "-.8em")
         .attr("dy", ".15em")
         .attr("transform", "rotate(-65)" )
-        .text(function(d) { return d; })
+        .text(function(d) { return d; });
 
     y_bar.attr("class", "y axis")
-      .call(yAxis);
+      .call(yAxis)
+      .selectAll("text")
+        .attr("dx", "-.8em");
+
+    var labels = label.selectAll('text')
+      .data(label_feature[y_feat])
+
+    labels.enter()
+      .append('text')
+      .classed('label', true)
+      .attr("transform", "rotate(-90)")
+      .attr('x', x_init)
+      .attr('y', y_init)
+      .attr('fill', '#bdc3c7')
+      .attr('y', function(d,i){return y_init+75+i*28})
+      .style('text-anchor', 'middle')
+      .style('opacity', 0)
+      .transition()
+      .delay(duration/2)
+      .duration(duration/2)
+      .style('opacity', 1)
+      .text(function(d){return d;});
 })
 
 function getTooltipXposition(div){
   if (div.node().getBoundingClientRect().width + d3.event.clientX < (window.innerWidth - 30) ) {
-    return (d3.event.clientX - svg.node().getBoundingClientRect().x + 70 + "px");
+    return (d3.event.clientX - svg.node().getBoundingClientRect().x + 80 + "px");
   }
   else {
-    return (window.innerWidth - 30 - div.node().getBoundingClientRect().width - svg.node().getBoundingClientRect().x + 70 + "px");
+    return (window.innerWidth - 30 - div.node().getBoundingClientRect().width - svg.node().getBoundingClientRect().x + 80 + "px");
   }
 };
 
+
+var x_init = -180;
+var y_init = -210;
 
 export function updatePlot(feature, nom_dpt) {
   // Update selected dpt
@@ -209,11 +240,52 @@ export function updatePlot(feature, nom_dpt) {
     //       .attr("transform", "rotate(-65)" )
     //       .text(function(d) { return d; })
 
+    console.log(label_feature[y_feat]);
+    var labels = label.selectAll('text')
+      .data(label_feature[feature])
+
+    labels.exit()
+      .transition()
+      .delay(delay)
+      .duration(duration/2)
+      .style('opacity', 0)
+      .remove();
+
+    labels.enter()
+      .append('text')
+      .classed('label', true)
+      .attr("transform", "rotate(-90)")
+      .attr('x', x_init)
+      .attr('y', y_init)
+      .attr('fill', '#bdc3c7')
+      .attr('y', function(d,i){return y_init+75+i*28})
+      .style('text-anchor', 'middle')
+      .style('opacity', 0)
+      .transition()
+      .delay(duration/2)
+      .duration(duration/2)
+      .style('opacity', 1)
+      .text(function(d){return d;});
+
+    labels.transition()
+      .duration(duration/2)
+      .style('opacity', 0)
+      .transition()
+      .delay(duration/3)
+      .duration(duration/3)
+      .attr('x', x_init)
+      .attr('y', function(d,i){return y_init+75+i*28})
+      .style('text-anchor', 'middle')
+      .style('opacity', 1)
+      .text(function(d){return d;});
+
     y_bar.transition(t_update)// change the y axis
         .call(yAxis);
 
     y_bar.attr("class", "y axis")
-      .call(yAxis);
+      .call(yAxis)
+      .selectAll("text")
+        .attr("dx", "-.8em");
   });
 }
 

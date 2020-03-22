@@ -1518,14 +1518,14 @@ input[type="text"] {
 #plotxy .axis path,
 .axis line {
     fill: none;
-    stroke: white;
+    stroke: #bdc3c7;
     stroke-width: 4;
     shape-rendering: crispEdges;
 }
 
 #plotxy .axis text {
     font-family: "Inconsolata", Arial, sans-serif;
-    color: #FFF;
+    color: #bdc3c7;
     font-size: 20px;
     font-weight: 400;
 }

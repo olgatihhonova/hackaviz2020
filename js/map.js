@@ -139,14 +139,14 @@ function standardize(d, month, feature) {
   return (2*d.properties.data[month-1][feature] - d.properties.data[month-1][feature+'_max'] - d.properties.data[month-1][feature+'_min']) / (d.properties.data[month-1][feature+'_max'] - d.properties.data[month-1][feature+'_min'])
 }
 
-const label_feature = {
+export const label_feature = {
   "meteo": ["Conditions météorologiques", "moyennes", "(0: mauvaises, 4: idéales)"],
   "Temp_midi": ["Température moyenne à midi", "en degrés Celsius"],
   "nb_evt": ["Nombre moyen d'évènements", "majeurs par jour"],
   "pop_dpt": ["Nombre d'habitants", ""],
   "volume": ["Nombre moyen de visiteurs", "présents chaque jour"],
   "frac_internationale": ["Fraction des visiteurs", "venant de l'étranger"],
-  "volume_sur_hbgt": ["Rapport du nombre de visiteurs", "sur le nombre de places estimées", "d'hébergement temporaire", "(Hotels, Auberges, Camping, ...)"]
+  "volume_sur_hbgt": ["Rapport du nombre de visiteurs", "sur le nombre de places estimées", "d'hébergement temporaire"]//, "(Hotels, Auberges, Camping, ...)"]
 }
 
 
