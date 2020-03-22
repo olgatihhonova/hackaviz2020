@@ -121,7 +121,6 @@ d3.json('data/map_data.geojson').then(function(geojson) {
     })
     .on("click", function(d) {
       var feat = (old_feature == 'old') ? 'meteo' : old_feature;
-      console.log(feat);
       updatePlot(feat, d.properties.nom_dpt);
     })
 });
@@ -180,15 +179,23 @@ export function updateMap(month, feature) {
 
     var labels_data = [min_feature, mean_feature, max_feature];
 
+    var n_digits = 1;
+    if (max_feature < 10) {
+      n_digits = 2;
+    }
+
     for (var i=0; i < labels_data.length; i++) {
       if (labels_data[i]>=1000) {
         labels_data[i]/= 1000;
-        labels_data[i] = labels_data[i].toFixed(1);
+        labels_data[i] = labels_data[i].toFixed(n_digits);
         labels_data[i]+= 'k';
       }
       else {
-        labels_data[i] = labels_data[i].toFixed(1);
+        if(  labels_data[i] != 0) {
+          labels_data[i] = labels_data[i].toFixed(n_digits);
+        }
       }
+
     }
 
     // Update map colors

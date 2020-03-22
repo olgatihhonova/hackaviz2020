@@ -1,7 +1,7 @@
-import {label_feature} from './map.js'
-
 const line_color = '#FFF';
 const selection_color = '#F8333C';
+// const label_color = '#bdc3c7';
+const label_color = '#FFF';
 
 // Set the dimensions of the canvas / graph
 var margin = {top: 80, right: 20, bottom: 160, left: 200},
@@ -23,8 +23,6 @@ var svg = d3.select("div#plotxy")
   .attr("transform",
     "translate(" + margin.left + "," + margin.top + ")");
 
-
-
 // Set the ranges
 var x = d3.scaleLinear().range([0, width - margin.left - margin.right]);
 var y = d3.scaleLinear().range([height - margin.top - margin.bottom, 0]);
@@ -40,6 +38,16 @@ function valueline(data, feature) {
   return path(data);
 }
 
+
+const label_feature = {
+  "meteo": ["Conditions météorologiques moyennes", "(0: mauvaises, 4: idéales)"],
+  "Temp_midi": ["Température moyenne à midi", "en degrés Celsius"],
+  "nb_evt": ["Nombre moyen d'évènements", "majeurs par jour"],
+  "pop_dpt": ["Nombre d'habitants"],
+  "volume": ["Nombre moyen de visiteurs", "présents chaque jour"],
+  "frac_internationale": ["Fraction des visiteurs", "venant de l'étranger"],
+  "volume_sur_hbgt": ["Rapport du nombre de visiteurs", "sur le nombre de places estimées", "d'hébergement temporaire"]//, "(Hotels, Auberges, Camping, ...)"]
+}
 // // Adds the svg canvas
 // var svg = d3.select("div#plotxy")
 //     .append("svg")
@@ -184,7 +192,7 @@ d3.json('data/map_data.geojson').then(function(geojson) {
       .attr("transform", "rotate(-90)")
       .attr('x', x_init)
       .attr('y', y_init)
-      .attr('fill', '#bdc3c7')
+      .attr('fill', label_color)
       .attr('y', function(d,i){return y_init+75+i*28})
       .style('text-anchor', 'middle')
       .style('opacity', 0)
@@ -240,7 +248,6 @@ export function updatePlot(feature, nom_dpt) {
     //       .attr("transform", "rotate(-65)" )
     //       .text(function(d) { return d; })
 
-    console.log(label_feature[y_feat]);
     var labels = label.selectAll('text')
       .data(label_feature[feature])
 
@@ -257,7 +264,7 @@ export function updatePlot(feature, nom_dpt) {
       .attr("transform", "rotate(-90)")
       .attr('x', x_init)
       .attr('y', y_init)
-      .attr('fill', '#bdc3c7')
+      .attr('fill', label_color)
       .attr('y', function(d,i){return y_init+75+i*28})
       .style('text-anchor', 'middle')
       .style('opacity', 0)
