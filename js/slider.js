@@ -45,6 +45,14 @@ var local = document.getElementById(localId);
 var tourism = document.getElementById(tourismId);
 var housing = document.getElementById(housingId);
 
+var radio_meteo = document.getElementById("radio-"+meteoId);
+var radio_temp = document.getElementById("radio-"+tempId);
+var radio_festival = document.getElementById("radio-"+festivalId);
+var radio_pop = document.getElementById("radio-"+popId);
+var radio_local = document.getElementById("radio-"+localId);
+var radio_tourism = document.getElementById("radio-"+tourismId);
+var radio_housing = document.getElementById("radio-"+housingId);
+
 function monthValue() {
   var currentVal = month.value;
   document.getElementById("error-message").innerHTML = "";
@@ -67,9 +75,14 @@ function meteoValue() {
   var currentVal = meteo.value;
   var monthVal = month.value;
   activeId = meteoId;
+  
   updateMap(monthVal, "meteo");
+
   document.getElementById("error-message").innerHTML = "";
   document.getElementById("winner-message").innerHTML = "";
+
+  radio_meteo.checked = true;
+  updatePlot(meteoId);
 //  document.getElementById("button-message").innerHTML = "The current value of meteo is: " + currentVal + monthVal;
 }
 meteo.addEventListener("input", meteoValue);
@@ -78,10 +91,14 @@ function tempValue() {
   var currentVal = temp.value;
   var monthVal = month.value;
   activeId = tempId;
+
   updateMap(monthVal, tempId);
+
   document.getElementById("error-message").innerHTML = "";
   document.getElementById("winner-message").innerHTML = "";
 
+  radio_temp.checked = true;
+  updatePlot(tempId);
 //  document.getElementById("button-message").innerHTML = "The current value of temp is: " + currentVal + monthVal;
 }
 temp.addEventListener("input", tempValue);
@@ -90,10 +107,14 @@ function festivalValue() {
   var currentVal = festival.value;
   var monthVal = month.value;
   activeId = festivalId;
+
   updateMap(monthVal, festivalId);
+
   document.getElementById("error-message").innerHTML = "";
   document.getElementById("winner-message").innerHTML = "";
 
+  radio_festival.checked = true;
+  updatePlot(festivalId);
 //  document.getElementById("button-message").innerHTML = "The current value of festival is: " + currentVal + monthVal;
 }
 festival.addEventListener("input", festivalValue);
@@ -102,10 +123,14 @@ function popValue() {
   var currentVal = pop.value;
   var monthVal = month.value;
   activeId = popId;
+
   updateMap(monthVal, popId);
+
   document.getElementById("error-message").innerHTML = "";
   document.getElementById("winner-message").innerHTML = "";
 
+  radio_pop.checked = true;
+  updatePlot(popId);
 //  document.getElementById("button-message").innerHTML = "The current value of pop is: " + currentVal + monthVal;
 }
 pop.addEventListener("input", popValue);
@@ -114,10 +139,14 @@ function localValue() {
   var currentVal = local.value;
   var monthVal = month.value;
   activeId = localId;
+
   updateMap(monthVal, localId);
+
   document.getElementById("error-message").innerHTML = "";
   document.getElementById("winner-message").innerHTML = "";
 
+  radio_local.checked = true;
+  updatePlot(localId);
 //  document.getElementById("button-message").innerHTML = "The current value of local is: " + currentVal + monthVal;
 }
 local.addEventListener("input", localValue);
@@ -126,10 +155,14 @@ function tourismValue() {
   var currentVal = tourism.value;
   var monthVal = month.value;
   activeId = tourismId;
+
   updateMap(monthVal, tourismId);
+
   document.getElementById("error-message").innerHTML = "";
   document.getElementById("winner-message").innerHTML = "";
 
+  radio_tourism.checked = true;
+  updatePlot(tourismId);
 //  document.getElementById("button-message").innerHTML = "The current value of tourism is: " + currentVal + monthVal;
 }
 tourism.addEventListener("input", tourismValue);
@@ -138,10 +171,14 @@ function housingValue() {
   var currentVal = housing.value;
   var monthVal = month.value;
   activeId = housingId;
+
   updateMap(monthVal, housingId);
+
   document.getElementById("error-message").innerHTML = "";
   document.getElementById("winner-message").innerHTML = "";
 
+  radio_housing.checked = true;
+  updatePlot(housingId);
 //  document.getElementById("button-message").innerHTML = "The current value of housing is: " + currentVal + monthVal;
 }
 housing.addEventListener("input", housingValue);
@@ -217,43 +254,25 @@ function resetParams() {
 resetButton.addEventListener("click", resetParams);
 
 
-
-
-
-var radio_meteo = document.getElementById("radio-"+meteoId);
-var radio_temp = document.getElementById("radio-"+tempId);
-var radio_festival = document.getElementById("radio-"+festivalId);
-var radio_pop = document.getElementById("radio-"+popId);
-var radio_local = document.getElementById("radio-"+localId);
-var radio_tourism = document.getElementById("radio-"+tourismId);
-var radio_housing = document.getElementById("radio-"+housingId);
-
-function updatePlotMeteo() {
-  updatePlot(meteoId);}
+function updatePlotMeteo() { updatePlot(meteoId);}
 radio_meteo.addEventListener("input", updatePlotMeteo);
 
-function updatePlotTemp() {
-  updatePlot(tempId);}
+function updatePlotTemp() { updatePlot(tempId);}
 radio_temp.addEventListener("input", updatePlotTemp);
 
-function updatePlotFestival() {
-  updatePlot(festivalId);}
+function updatePlotFestival() { updatePlot(festivalId);}
 radio_festival.addEventListener("input", updatePlotFestival);
 
-function updatePlotPop() {
-  updatePlot(popId);}
+function updatePlotPop() { updatePlot(popId);}
 radio_pop.addEventListener("input", updatePlotPop);
 
-function updatePlotLocal() {
-  updatePlot(localId);}
+function updatePlotLocal() { updatePlot(localId);}
 radio_local.addEventListener("input", updatePlotLocal);
 
-function updatePlotTourism() {
-  updatePlot(tourismId);}
+function updatePlotTourism() { updatePlot(tourismId);}
 radio_tourism.addEventListener("input", updatePlotTourism);
 
-function updatePlotHousing() {
-  updatePlot(housingId);}
+function updatePlotHousing() { updatePlot(housingId);}
 radio_housing.addEventListener("input", updatePlotHousing);
 
 
