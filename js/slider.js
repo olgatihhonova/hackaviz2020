@@ -260,6 +260,9 @@ radio_housing.addEventListener("input", updatePlotHousing);
 
 
 
+
+
+
 //getSliderValue("temp-range")
 
 

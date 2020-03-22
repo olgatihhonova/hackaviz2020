@@ -18,8 +18,8 @@ var color = d3.scaleLinear().domain([-1,0,1])
   .interpolate(d3.interpolateRgb)
   .range([d3.rgb(color_min), d3.rgb('#FFFFFF'), d3.rgb(color_max)]);
 
-var svg = d3.select("div#map")
-  // .classed("svg-container", true)
+var svg = d3.select("div#mapd3")
+  .classed("svg-container", true)
   .append("svg")
   // .attr("preserveAspectRatio", "xMinYMin meet")
   .attr("viewBox", "0 0 "+width+" "+height)
@@ -36,7 +36,7 @@ path.projection(projection);
 
 const deps = svg.append("g");
 
-var div = d3.select("div#map").append("div")
+var div = d3.select("div#mapd3").append("div")
     .classed("tooltip", true)
     .style("opacity", 0);
 
