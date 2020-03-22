@@ -104,7 +104,7 @@ d3.json('data/map_data.geojson').then(function(geojson) {
     .on('mousemove', function() {
       div.transition()
          .duration(0)
-         .style("opacity", .9);
+         .style("opacity", 1);
       div.style("left", getTooltipXposition(div))
          .style("top", d3.event.clientY - svg.node().getBoundingClientRect().y + "px");
     })
