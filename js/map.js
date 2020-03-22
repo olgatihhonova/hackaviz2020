@@ -1,3 +1,5 @@
+import {updatePlot} from './plotXY.js'
+
 const width = 810;
 const height = 600;
 
@@ -17,12 +19,12 @@ var color = d3.scaleLinear().domain([-1,0,1])
   .range([d3.rgb(color_min), d3.rgb('#FFFFFF'), d3.rgb(color_max)]);
 
 var svg = d3.select("div#map")
-  .classed("svg-container", true)
+  // .classed("svg-container", true)
   .append("svg")
-  .attr("preserveAspectRatio", "xMinYMin meet")
+  // .attr("preserveAspectRatio", "xMinYMin meet")
   .attr("viewBox", "0 0 "+width+" "+height)
-  //class to make it responsive
-  .classed("svg-content-responsive", true);
+  // //class to make it responsive
+  // .classed("svg-content-responsive", true);
 
 const path = d3.geoPath();
 
@@ -82,6 +84,9 @@ legend.selectAll('text')
   .style('opacity', 0)
   .style("text-anchor", "middle")
 
+
+var old_feature = 'old';
+
 // Setup map
 d3.json('data/map_data.geojson').then(function(geojson) {
 
@@ -114,6 +119,9 @@ d3.json('data/map_data.geojson').then(function(geojson) {
             .style("left", "-500px")
             .style("top", "-500px");
     })
+    .on("click", function(d) {
+      updatePlot(old_feature, d.properties.nom_dpt);
+    })
 });
 
 function getTooltipXposition(div){
@@ -144,7 +152,7 @@ const delay = 0;
 const duration = 1000;
 const label = svg.append('g');
 
-var old_feature = 'old';
+
 var old_month = -1;
 var just_got_best = false;
 
