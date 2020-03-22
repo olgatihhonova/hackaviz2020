@@ -176,6 +176,9 @@ function bestDestinationValue() {
     getBestDestination(monthVal, vals);
     document.getElementById("winner-message").innerHTML =
     "<span style='color:#fff'>Vôtre destination idéale est : </span><br> Pyrenes-Orientales";
+
+    document.getElementById("winner-message").innerHTML =
+    "<span style='color:#fff'>Vos destinations idéales sont : </span><br> les rouges";
   }
 
   // document.getElementById("demo").innerHTML =
@@ -193,6 +196,7 @@ function resetParams() {
   local.value = local.defaultValue;
   tourism.value = tourism.defaultValue;
   housing.value = housing.defaultValue;
+  activeId = "none"
 
   resetMap();
   document.getElementById("error-message").innerHTML = "";
