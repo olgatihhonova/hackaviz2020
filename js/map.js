@@ -120,7 +120,9 @@ d3.json('data/map_data.geojson').then(function(geojson) {
             .style("top", "-500px");
     })
     .on("click", function(d) {
-      updatePlot(old_feature, d.properties.nom_dpt);
+      var feat = (old_feature == 'old') ? 'meteo' : old_feature;
+      console.log(feat);
+      updatePlot(feat, d.properties.nom_dpt);
     })
 });
 

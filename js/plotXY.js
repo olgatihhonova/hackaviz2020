@@ -1,4 +1,4 @@
-const line_color = '#FFB400';
+const line_color = '#FFF';
 const selection_color = '#F8333C';
 
 // Set the dimensions of the canvas / graph
@@ -101,7 +101,7 @@ d3.json('data/map_data.geojson').then(function(geojson) {
 
   // Format data in the proper way
   var x_feat = 'month';
-  var y_feat = 'volume';
+  var y_feat = 'meteo';
 
   var max = getMax(data, y_feat);
 
