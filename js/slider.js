@@ -265,7 +265,7 @@ radio_festival.addEventListener("input", updatePlotFestival);
 function updatePlotPop() { updatePlot(popId, selected_dpt);}
 radio_pop.addEventListener("input", updatePlotPop);
 
-function updatePlotLocal() { updatePlot(localI, selected_dptd);}
+function updatePlotLocal() { updatePlot(localId, selected_dpt);}
 radio_local.addEventListener("input", updatePlotLocal);
 
 function updatePlotTourism() { updatePlot(tourismId, selected_dpt);}

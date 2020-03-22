@@ -1,3 +1,5 @@
+import {updateSelection} from './map.js'
+
 const line_color = '#FFF';
 const selection_color = '#F8333C';
 // const label_color = '#bdc3c7';
@@ -109,6 +111,7 @@ var duration = 200;
 var delay = 0;
 
 var selected_dpt = ''
+var selected_feature = 'meteo';
 
 d3.json('data/map_data.geojson').then(function(geojson) {
 
@@ -116,7 +119,7 @@ d3.json('data/map_data.geojson').then(function(geojson) {
 
   // Format data in the proper way
   var x_feat = 'month';
-  var y_feat = 'meteo';
+  var y_feat = selected_feature;
 
   var max = getMax(data, y_feat);
 
@@ -166,7 +169,10 @@ d3.json('data/map_data.geojson').then(function(geojson) {
             .style("left", "-500px")
             .style("top", "-500px");
     })
-
+    .on("click", function(d) {
+      updateSelection(d.properties.nom_dpt);
+      updatePlot(selected_feature, d.properties.nom_dpt);
+    })
     x_bar.attr("class", "x axis")
       .attr("transform", "translate(0," + (height-margin.top-margin.bottom) + ")")
       .call(xAxis)
@@ -219,6 +225,7 @@ var y_init = -210;
 export function updatePlot(feature, nom_dpt) {
   // Update selected dpt
   selected_dpt = nom_dpt;
+  selected_feature = feature;
 
   d3.json('data/map_data.geojson').then(function(geojson) {
     var data = geojson.features
@@ -278,7 +285,7 @@ export function updatePlot(feature, nom_dpt) {
       .duration(duration/2)
       .style('opacity', 0)
       .transition()
-      .delay(duration/3)
+      // .delay(duration/3)
       .duration(duration/3)
       .attr('x', x_init)
       .attr('y', function(d,i){return y_init+75+i*28})
