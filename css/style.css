@@ -1910,7 +1910,9 @@ button:active {
   top: -7%;
   text-align: center;
 }
-
+.plot-title {
+  left: 60%;
+}
 @media screen and (max-width: 1200px) {
   .winner, .plot-title {
     top: -10%;
