@@ -107,7 +107,7 @@ var t_mouseout = d3.transition()
 var t_update = d3.transition("update")
   .duration(1000);
 // transition for labels
-var duration = 200;
+var duration = 500;
 var delay = 0;
 
 var selected_dpt = ''
@@ -222,6 +222,8 @@ function getTooltipXposition(div){
 var x_init = -180;
 var y_init = -210;
 
+var old_feature = selected_feature;
+
 export function updatePlot(feature, nom_dpt) {
   // Update selected dpt
   selected_dpt = nom_dpt;
@@ -258,40 +260,44 @@ export function updatePlot(feature, nom_dpt) {
     var labels = label.selectAll('text')
       .data(label_feature[feature])
 
-    labels.exit()
-      .transition()
-      .delay(delay)
-      .duration(duration/2)
-      .style('opacity', 0)
-      .remove();
+    if (selected_feature != old_feature) {
+      labels.exit()
+        .transition()
+        .delay(delay)
+        .duration(duration/2)
+        .style('opacity', 0)
+        .remove();
 
-    labels.enter()
-      .append('text')
-      .classed('label', true)
-      .attr("transform", "rotate(-90)")
-      .attr('x', x_init)
-      .attr('y', y_init)
-      .attr('fill', label_color)
-      .attr('y', function(d,i){return y_init+75+i*28})
-      .style('text-anchor', 'middle')
-      .style('opacity', 0)
-      .transition()
-      .delay(duration/2)
-      .duration(duration/2)
-      .style('opacity', 1)
-      .text(function(d){return d;});
+      labels.enter()
+        .append('text')
+        .classed('label', true)
+        .attr("transform", "rotate(-90)")
+        .attr('x', x_init)
+        .attr('y', y_init)
+        .attr('fill', label_color)
+        .attr('y', function(d,i){return y_init+75+i*28})
+        .style('text-anchor', 'middle')
+        .style('opacity', 0)
+        .transition()
+        .delay(duration/2)
+        .duration(duration/2)
+        .style('opacity', 1)
+        .text(function(d){return d;});
 
-    labels.transition()
-      .duration(duration/2)
-      .style('opacity', 0)
-      .transition()
-      // .delay(duration/3)
-      .duration(duration/3)
-      .attr('x', x_init)
-      .attr('y', function(d,i){return y_init+75+i*28})
-      .style('text-anchor', 'middle')
-      .style('opacity', 1)
-      .text(function(d){return d;});
+      labels.transition()
+        .duration(duration/2)
+        .style('opacity', 0)
+        .transition()
+        // .delay(duration/3)
+        .duration(duration/3)
+        .attr('x', x_init)
+        .attr('y', function(d,i){return y_init+75+i*28})
+        .style('text-anchor', 'middle')
+        .style('opacity', 1)
+        .text(function(d){return d;});
+
+      old_feature = selected_feature;
+    }
 
     y_bar.transition(t_update)// change the y axis
         .call(yAxis);
