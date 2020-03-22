@@ -451,9 +451,6 @@ h1, h2, h3, h4, h5, h6, figure {
 #intro {
   background: #F8333C;
 }
-#intro span {
-  white-space: nowrap;
-}
 
 #fh5co-features {
   background: #FEE856;
@@ -1501,7 +1498,8 @@ input[type="text"] {
 
 
 /* tooltip for D3 map and plotXY*/
-#mapd3 .tooltip, #plotxy .tooltip {
+#mapd3 .tooltip,
+#plotxy .tooltip {
     position: absolute;
     text-align: center;
     font-family: 'Amatic SC', 'Heveltica Neue', Arial, sans-serif;
