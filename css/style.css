@@ -688,7 +688,6 @@ h1, h2, h3, h4, h5, h6, figure {
   background: rgba(221, 53, 110, 0.03);
 }
 
-// #footer
 #fh5co-slider,
 #fh5co-about,
 #fh5co-wireframe,
@@ -711,7 +710,6 @@ h1, h2, h3, h4, h5, h6, figure {
     padding-top: 100px;
 }
 
-//   #footer
 @media screen and (max-width: 768px) {
   #fh5co-slider,
   #fh5co-about,
@@ -1096,9 +1094,7 @@ h1, h2, h3, h4, h5, h6, figure {
   background: #ffb400;
   color: #1f7a8c;
   font-family: 'Amatic SC', 'Heveltica Neue', Arial, sans-serif;
-  font-weight: 800;
   font-type: bold;
-  font-size: 22px;
 }
 
 #footer .fh5co-footer-links {
@@ -1130,9 +1126,13 @@ h1, h2, h3, h4, h5, h6, figure {
     text-align: center;
   }
 }
-#footer .fh5co-widget h4 {
-  margin-bottom: 30px;
-  font-size: 22px;
+#footer h4 {
+  //margin-bottom: 30px;
+  font-size: 30px;
+  font-weight: 800;
+}
+#footer p {
+  font-size: 25px;
   font-weight: 800;
 }
 #footer .copyright .block {
@@ -2058,6 +2058,22 @@ button:active {
 			width: 10px;
 			height: 10px;
 }
+
+
+
+
+
+
+/*
+-moz-transform: translateX(270px);
+  -webkit-transform: translateX(270px);
+  -ms-transform: translateX(270px);
+  -o-transform: translateX(270px);
+  transform: translateX(270px);
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+*/
 
 
 /*# sourceMappingURL=style.css.map */
