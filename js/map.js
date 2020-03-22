@@ -285,7 +285,7 @@ export function resetMap() {
 }
 
 
-export function getBestDestination(month, vals) {
+export function getBestDestination(month, vals, callback) {
   just_got_best = true;
   d3.json('data/map_data.geojson').then(function(geojson) {
 
@@ -315,6 +315,7 @@ export function getBestDestination(month, vals) {
         .attr('fill', function(d,i) {if (best[i]==1) {return '#F8333C';} else { return '#fff';}})
       resetColorBar();
     }
-    return best_names;
+    callback(best_names);
+    //return best_names;
   });
 }

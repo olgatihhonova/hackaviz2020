@@ -145,6 +145,19 @@ function housingValue() {
 }
 housing.addEventListener("input", housingValue);
 
+
+/* update destination name as a callback */
+function setDestinationName(destinationName) {
+    if (destinationName.length == 1){
+        document.getElementById("winner-message").innerHTML =
+        "<span style='color:#fff'>Vôtre destination idéale est : </span><br> "+destinationName[0];
+    }
+    else {
+        document.getElementById("winner-message").innerHTML =
+        "<span style='color:#fff'>Vos destinations idéales sont : </span><br> les rouges";
+    }
+}
+
 /* extract all slider values to use for best destination calc */
 var bestDestinationButton = document.getElementById("destination-button");
 function bestDestinationValue() {
@@ -173,14 +186,8 @@ function bestDestinationValue() {
     document.getElementById("winner-message").innerHTML = "";
   }
   else {
-    getBestDestination(monthVal, vals);
-    document.getElementById("winner-message").innerHTML =
-    "<span style='color:#fff'>Vôtre destination idéale est : </span><br> Pyrenes-Orientales";
-
-    document.getElementById("winner-message").innerHTML =
-    "<span style='color:#fff'>Vos destinations idéales sont : </span><br> les rouges";
+    getBestDestination(monthVal, vals, setDestinationName);
   }
-
   // document.getElementById("demo").innerHTML =
   // "The current values are "+monthVal+meteoVal+tempVal+festivalVal+popVal+localVal+tourismVal+housingVal;
 }
