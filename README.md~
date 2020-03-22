@@ -23,8 +23,9 @@ Données aggrégées par mois et par département.
   - Add dpt title when selected - O
   - Change plot color - T
   - Babel fish - O
-  - Burn it!!! Fix click outside of map - OT
+  - Fix click outside of map - OT
   - Fix 1200 jump - O
+  - When resize put buttons on one / two line - O
 
 - Page 5 footer:
   - Dans le cadre du Hackaton

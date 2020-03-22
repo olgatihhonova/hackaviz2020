@@ -278,6 +278,11 @@ radio_housing.addEventListener("input", updatePlotHousing);
 /* add title to the plot */
 var mapForPlot = document.getElementById("map-to-plot");
 function plotTitle() {
-  document.getElementById("plot-message").innerHTML = selected_dpt+"<span style='color:#fff'> sur l'année </span>";
+  if (len(selected_dpt) == 0) {
+    document.getElementById("plot-message").innerHTML = "Départements <span style='color:#fff'> sur l'année </span>";
+  }
+  else {
+    document.getElementById("plot-message").innerHTML = selected_dpt+"<span style='color:#fff'> sur l'année </span>";
+  }
 }
 mapForPlot.addEventListener("click", plotTitle);
