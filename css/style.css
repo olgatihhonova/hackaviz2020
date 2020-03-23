@@ -1902,13 +1902,30 @@ button:active {
 .img-42 {
   position: relative;
 }
+#plot img {
+  height: 320px;
+  position: absolute;
+  //bottom: -30px;
+  top: -100px;
+  right: 10px;
+}
+@media screen and (max-width: 992px) {
+  #plot img {
+    position: relative;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    //float: right;
+    //margin-bottom: -110px;
+  }
+}
+
 #map img {
   height: 420px;
   position: absolute;
   top: -1em;
   right: 0px;
 }
-
 @media screen and (max-width: 992px) {
   #map img {
     position: relative;
@@ -1919,7 +1936,8 @@ button:active {
     margin-bottom: -110px;
   }
 }
-#map .container {
+#map .container,
+#plot .container {
   clear:both;
 }
 @media screen and (max-width: 992px) {
