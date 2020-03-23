@@ -1912,11 +1912,16 @@ button:active {
 @media screen and (max-width: 992px) {
   #map img {
     position: relative;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
     float: right;
-    margin-bottom: -100px;
+    margin-bottom: -110px;
   }
 }
-
+#map .container {
+  clear:both;
+}
 @media screen and (max-width: 992px) {
   #fh5co-header img {
     max-width: 90%;
