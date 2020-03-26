@@ -192,12 +192,12 @@ function setDestinationName(destinationName) {
     setTimeout(function() {
         if (destinationName.length == 1){
             document.getElementById("winner-message").innerHTML =
-            "<span style='color:#fff'>Vôtre destination idéale est : </span><br> "+destinationName[0];
+            "<span style='color:#fff'>Vôtre destination idéale <span class='tip'>est :</span> </span><br> "+destinationName[0];
             //document.getElementById("winner-message").fadeIn();
         }
         else {
             document.getElementById("winner-message").innerHTML =
-            "<span style='color:#fff'>Vos destinations idéales sont : </span><br> les rouges";
+            "<span style='color:#fff'>Vos destinations idéales <span class='tip'>sont :</span> </span><br> les rouges";
         }
     }, delayInMilliseconds);
 }
