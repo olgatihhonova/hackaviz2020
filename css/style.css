@@ -1940,7 +1940,10 @@ button:active {
 }
 @media screen and (max-width: 480px) {
   #fh5co-header .prize img {
-    width: 80px;
+    width: 75px;
+    }
+    .prize {
+      padding-bottom: 55px;
     }
 }
 .img-42 {
