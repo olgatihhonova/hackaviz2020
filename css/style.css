@@ -1927,8 +1927,8 @@ button:active {
 @media screen and (max-width: 480px) {
   #fh5co-header .price img {
     width: 240px;
+    }
 }
-
 .img-42 {
   position: relative;
 }
