@@ -1991,7 +1991,7 @@ button:active {
 }
 @media screen and (max-width: 768px) {
   #intro img {
-    max-width: 300px;
+    max-width: 250px;
   }
 }
 
@@ -2019,6 +2019,9 @@ button:active {
   .winner h1 {
     font-size: 20px;
     padding-bottom: 0;
+  }
+  .winner {
+    top: -20%;
   }
 }
 .plot-title {
@@ -2108,7 +2111,12 @@ button:active {
         width: 120px;
     }
 }
+@media screen and (max-width: 992px) {
+    .radio-container {
+        font-size: 12px;
+    }
 
+}
 /* Hide the browser's default radio button */
 .radio-container input {
   position: absolute;
