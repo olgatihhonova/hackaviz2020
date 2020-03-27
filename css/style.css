@@ -1923,7 +1923,10 @@ button:active {
   -ms-transform: translate(-18%, 285%) rotate(-45deg);
   -o-transform: translate(-18%, 285%) rotate(-45deg);
   transform: translate(-18%, 285%) rotate(-45deg);
-
+}
+@media screen and (max-width: 480px) {
+  #fh5co-header .price img {
+    width: 240px;
 }
 
 .img-42 {
