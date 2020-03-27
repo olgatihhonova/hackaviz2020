@@ -229,6 +229,8 @@ export function updatePlot(feature, nom_dpt) {
   selected_dpt = nom_dpt;
   selected_feature = feature;
 
+  document.getElementById("radio-"+selected_feature).checked = true;
+
   d3.json('data/map_data.geojson').then(function(geojson) {
     var data = geojson.features
     // Format data in the proper way
