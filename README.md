@@ -17,10 +17,7 @@ Données aggrégées par mois et par département.
 
 # Credits
 
-Site web réalisé avec amour pour <a href="https://fr.wikipedia.org/wiki/Douglas_Adams">Douglas Adams</a> dans le cadre du <a href="https://toulouse-dataviz.fr/hackaviz-2020">Toulouse Hackaviz 2020</a>.
+# To do list
 
-Les visualisations sont basées sur un <a href=https://github.com/ToulouseDataViz/Hackaviz2020>jeu de données</a> couvrant l'année 2018, compilées par l'association <a href="http://toulouse-dataviz.fr/">Toulouse DataViz</a>.
 
 © 2020 Equipe Pixel & Poivre
-
-
