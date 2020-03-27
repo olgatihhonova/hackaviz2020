@@ -1924,14 +1924,18 @@ button:active {
   //-ms-transform: translate(-18%, 285%) rotate(-45deg);
   //-o-transform: translate(-18%, 285%) rotate(-45deg);
   //transform: translate(-18%, 285%) rotate(-45deg);
+  -moz-transform: rotate(-20deg);
+  -webkit-transform: rotate(-20deg);
+  -ms-transform: rotate(-20deg);
+  -o-transform: rotate(-20deg);
   transform: rotate(-20deg);
 }
 @media screen and (max-width: 768px) {
   #fh5co-header .prize img {
-    width:100px;
+    width: 100px;
     }
     .prize {
-        padding-bottom: 50px;
+      padding-bottom: 50px;
     }
 }
 .img-42 {
