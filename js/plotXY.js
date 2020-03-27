@@ -142,7 +142,8 @@ d3.json('data/map_data.geojson').then(function(geojson) {
       d3.select(this)
         // .transition(t_mouseover)
         .transition()
-        .attr('opacity', 1);
+        .attr('opacity', 1)
+        .style("cursor", "pointer");
 
       div.transition()
           .duration(200)
@@ -162,7 +163,8 @@ d3.json('data/map_data.geojson').then(function(geojson) {
         d3.select(this)
           // .transition(t_mouseout)
           .transition()
-          .attr('opacity', function(d) { if (d.properties.nom_dpt == selected_dpt) {return 1;} else {return 0.1;}});
+          .attr('opacity', function(d) { if (d.properties.nom_dpt == selected_dpt) {return 1;} else {return 0.1;}})
+          .style("cursor", "default");
 
         div.style("opacity", 0);
         div.html("")
