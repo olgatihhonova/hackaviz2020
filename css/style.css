@@ -1911,22 +1911,27 @@ button:active {
   margin-bottom: 10px;
   margin-top: 70px;
 }
-#fh5co-header .price img {
+#fh5co-header .prize img {
   position: absolute;
   margin-bottom: 0px;
   margin-top: 0px;
-  top: 0px;
-  left: 0px;
-  width: 330px;
-  -moz-transform: translate(-18%, 285%) rotate(-45deg);
-  -webkit-transform: translate(-18%, 285%) rotate(-45deg);
-  -ms-transform: translate(-18%, 285%) rotate(-45deg);
-  -o-transform: translate(-18%, 285%) rotate(-45deg);
-  transform: translate(-18%, 285%) rotate(-45deg);
+  top: 20px;
+  left: 20px;
+  width: 120px;
+  //width: 330px;
+  //-moz-transform: translate(-18%, 285%) rotate(-45deg);
+  //-webkit-transform: translate(-18%, 285%) rotate(-45deg);
+  //-ms-transform: translate(-18%, 285%) rotate(-45deg);
+  //-o-transform: translate(-18%, 285%) rotate(-45deg);
+  //transform: translate(-18%, 285%) rotate(-45deg);
+  transform: rotate(-20deg);
 }
-@media screen and (max-width: 480px) {
-  #fh5co-header .price img {
-    width: 240px;
+@media screen and (max-width: 768px) {
+  #fh5co-header .prize img {
+    width:100px;
+    }
+    .prize {
+        padding-bottom: 50px;
     }
 }
 .img-42 {
