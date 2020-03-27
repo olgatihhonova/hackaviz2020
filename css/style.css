@@ -1938,6 +1938,11 @@ button:active {
       padding-bottom: 50px;
     }
 }
+@media screen and (max-width: 480px) {
+  #fh5co-header .prize img {
+    width: 80px;
+    }
+}
 .img-42 {
   position: relative;
 }
