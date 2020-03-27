@@ -1911,7 +1911,20 @@ button:active {
   margin-bottom: 10px;
   margin-top: 70px;
 }
+#fh5co-header .price img {
+  position: absolute;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  top: 0px;
+  left: 0px;
+  width: 330px;
+  -moz-transform: translate(-18%, 285%) rotate(-45deg);
+  -webkit-transform: translate(-18%, 285%) rotate(-45deg);
+  -ms-transform: translate(-18%, 285%) rotate(-45deg);
+  -o-transform: translate(-18%, 285%) rotate(-45deg);
+  transform: translate(-18%, 285%) rotate(-45deg);
 
+}
 
 .img-42 {
   position: relative;
